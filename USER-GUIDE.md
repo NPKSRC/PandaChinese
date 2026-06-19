@@ -1,6 +1,6 @@
 # 🐼 Panda HSK — User Guide
 
-Welcome! **Panda HSK** helps you learn Chinese vocabulary for the **HSK 1–3** exams. Your study
+Welcome! **Panda HSK** helps you learn Chinese vocabulary for the **HSK 1–4** exams. Your study
 buddy is **Bao**, a panda who reacts as you learn — and who *grows up* as you master more words.
 This guide walks you through everything the app can do.
 
@@ -12,7 +12,7 @@ Open the app in any modern browser (Chrome, Safari, Edge, Firefox) on a phone, t
 Nothing to install. Your progress saves automatically on your device.
 
 At the **top**: Bao's seal logo and app name, your 🎋 **day streak**, and your **profile chip** (tap it
-to switch or create profiles). Below that is the **HSK level bar**. At the **bottom** are four sections:
+to switch or create profiles). Below that is the **level menu**. At the **bottom** are four sections:
 **Study**, **Quiz**, **Browse**, and **Progress**.
 
 ---
@@ -22,7 +22,7 @@ to switch or create profiles). Below that is the **HSK level bar**. At the **bot
 At the top of Study, Quiz, and Browse there's a **Course** selector. Tap it to switch which vocabulary
 you're learning:
 
-- **HSK 1–3** — the 1000-word official list, grouped by level.
+- **HSK 1–4** — the 2000-word official list, grouped by level (HSK 1, 2, 3, 4).
 - **Class lessons** — your course vocabulary, grouped by lesson (8.10, 8.17, …), many with example sentences.
 
 Each course keeps its **own memory progress**, so your HSK words and lesson words are tracked separately —
@@ -32,12 +32,12 @@ but Bao grows from everything you learn across both. More courses can be added t
 
 ## Choosing your group (level or lesson)
 
-The level bar appears on Study, Quiz, and Browse:
+The **level menu** appears on Study, Quiz, and Browse. Instead of a long row of buttons, it's now a single
+compact selector that shows your current group (for example **HSK 4 · 1000 words**) with a **▾** chevron.
+Tap it to open the menu and pick a group; tap anywhere outside (or press **Esc**) to close it.
 
-| Tab | What you get |
-|-----|--------------|
-For the HSK course the groups are **HSK 1 / 2 / 3 / All**; for Class lessons they're each **lesson number**
-plus **All**. Tap any group to focus on it — the app remembers your choice per course.
+For the HSK course the groups are **HSK 1 / 2 / 3 / 4 / All**; for Class lessons they're each **lesson number**
+plus **All**. The app remembers your choice per course. (When new levels are added later, they appear here automatically.)
 
 ---
 
@@ -48,7 +48,9 @@ Tap to turn each language on or off. Whatever you pick shows on the back of flas
 Turn off the languages you already know to test yourself, or turn on two at once to compare.
 
 > Thai and Japanese meanings are helpful AI-generated study drafts. They're reliable for everyday
-> vocabulary; a native speaker may refine a few.
+> vocabulary; a native speaker may refine a few. **Note:** Thai and Japanese for **HSK 4** are still
+> being prepared — for now HSK 4 cards show **English** meanings, and the TH/JA toggles simply stay empty
+> for those words until the drafts are added.
 
 ---
 
@@ -60,7 +62,7 @@ This is where you learn at your own pace.
 - **Swipe left** for the next card, **swipe right** to go back. On a computer you can **drag** with the
   mouse, use the **◀ ▶ buttons**, or the **arrow keys**. Tap or press **Space** to flip.
 - **汉字 / 拼音 / Meaning first** — choose which side shows first.
-- **🔊** on the back reads the word aloud.
+- **🔊 speaker** reads the word aloud. It now appears on **both the front and the back** of every card, so you can hear a word before or after flipping.
 - **★ (star)** on a card flags it for extra review (find these later under Browse → ★ Review, or quiz them).
 
 ### Rating a word (how memory tracking works)
@@ -80,6 +82,9 @@ Your honest rating sets when the word returns. Each word carries a status that g
 
 - **⏰ Study due** loads only the words that are ready for review right now.
 - **🔀 Shuffle** mixes the deck; **↺ Restart** goes back to the beginning.
+
+> **The deck now shuffles automatically each time you start** (or switch group/course), so you no longer
+> always begin at the same first word. Use **↺ Restart** any time for a fresh shuffle.
 
 ---
 
@@ -116,8 +121,8 @@ Tap **Progress** to meet your panda and see how you're doing:
   **Panda Cub → Bamboo Scout → Clever Panda → Scholar Panda → Master Panda → Sage Panda.**
   The bar shows progress to the next stage.
 - **Stats** — total XP, day streak, words mastered, and quiz accuracy.
-- **Memory map** — how many of all 1000 words are New / Learning / Familiar / Mastered.
-- **Mastery by level** — your mastered count for HSK 1, 2, and 3.
+- **Memory map** — how many of the current course's words are New / Learning / Familiar / Mastered.
+- **Mastery by level** — your mastered count for HSK 1, 2, 3, and 4.
 - **XP — last 7 days** — a little bar chart of your recent effort.
 - **Recent activity** — your latest study, quiz, and mastery moments.
 

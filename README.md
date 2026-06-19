@@ -1,20 +1,25 @@
 # 🐼 Panda HSK — Chinese Vocabulary Trainer
 
-A friendly, single-file web app for learning **HSK 1–3** Chinese vocabulary (1000 words) with
+A friendly, single-file web app for learning **HSK 1–4** Chinese vocabulary (2000 words) with
 swipeable flashcards, spaced-repetition memory tracking, quizzes, and meanings in
 **English, Thai, and Japanese**. Switch between built-in **courses** — the HSK 1–3 list or your own
 **class-lesson vocabulary** — right inside the app. Meet **Bao**, your panda study buddy, who *grows up* as you learn.
 
-![level](https://img.shields.io/badge/HSK-1--3-4c9a4f) ![words](https://img.shields.io/badge/words-1000-2f6b33) ![langs](https://img.shields.io/badge/meanings-EN%20%C2%B7%20TH%20%C2%B7%20JA-3f7cc4) ![license](https://img.shields.io/badge/license-MIT-e7a83b)
+![level](https://img.shields.io/badge/HSK-1--4-4c9a4f) ![words](https://img.shields.io/badge/words-2000-2f6b33) ![langs](https://img.shields.io/badge/meanings-EN%20%C2%B7%20TH%20%C2%B7%20JA-3f7cc4) ![license](https://img.shields.io/badge/license-MIT-e7a83b)
 
 ## ✨ Features
 
 - **Switchable courses (in-app)** — a **Course** selector lets you choose which vocabulary database is
-  active: **HSK 1–3** (1000 words) or **Class lessons** (organised by lesson, with example sentences).
+  active: **HSK 1–4** (2000 words) or **Class lessons** (organised by lesson, with example sentences).
   Each course keeps its own memory progress, and the structure is built to add more courses later.
 
+- **Compact level menu** — levels are now chosen from a single **dropdown menu** (showing the current
+  group, e.g. *HSK 4 · 1000 words*) instead of a long row of buttons, keeping the screen uncluttered.
+  The menu is **data-driven**: it lists whatever levels exist in the data, so adding HSK 5+ needs no UI changes.
+
 - **Swipeable flashcards** — swipe ← / → (or drag with a mouse) to move between cards, tap to flip.
-  Choose to see 汉字, 拼音, or the meaning first.
+  Choose to see 汉字, 拼音, or the meaning first. The deck **shuffles on every start**, and cards are sized
+  to show all three meaning languages at once without clipping.
 - **Memory tracking (spaced repetition)** — after each card, rate it **Again / Hard / Good / Easy**.
   Every word earns a status — **New → Learning → Familiar → Mastered** — and reappears for review when it's due.
   Star any word to flag it for extra review.
@@ -26,7 +31,7 @@ swipeable flashcards, spaced-repetition memory tracking, quizzes, and meanings i
 - **Profiles, XP & dashboard** — create one or more local profiles, earn XP, keep a day streak, and see a
   Progress dashboard with a memory map, mastery-by-level, a 7-day XP chart, and recent activity.
 - **Back up & sync** — export a profile to a backup code and restore it on another device (no account/server needed).
-- **Pronunciation** — tap 🔊 to hear any word (uses your browser's built-in Chinese voice where available).
+- **Pronunciation** — tap 🔊 to hear any word (uses your browser's built-in Chinese voice where available). The speaker appears on **both the front and back** of each card.
 - **Mobile-first & offline** — fixed, no-jump layouts, large touch targets, and works offline once loaded.
 
 Everything lives in one file (`index.html`) — no build step, no server, no dependencies.
@@ -38,12 +43,16 @@ Everything lives in one file (`index.html`) — no build step, no server, no dep
 | File | What it is |
 |------|------------|
 | `index.html` | The complete app (vocabulary built in). **This is the only file you need to publish.** |
-| `vocab-data.js` | The vocabulary as clean, editable data (EN/TH/JA) — handy for adding HSK 4+ later. |
+| `vocab-data.js` | The vocabulary as clean, editable data (EN/TH/JA), now including HSK 4 — handy for adding HSK 5+ later. |
 | `README.md` | This file. |
 | `USER-GUIDE.md` / `USER-GUIDE.pdf` | A friendly guide for learners. |
 
 > **About the Thai & Japanese:** these meanings are **AI-generated study drafts**. They're great for
 > recognition and recall, but a native speaker may want to refine a few. English meanings come from the official lists.
+>
+> **HSK 4 status:** the 1000 HSK 4 words are included with **English** meanings now; their **Thai & Japanese
+> drafts are pending** and will be added in a later update. The app skips empty TH/JA gracefully, so HSK 4
+> cards simply show English until then.
 
 ---
 
@@ -88,8 +97,9 @@ Each word now looks like this:
 - `h` = hanzi · `p` = pinyin · `pos` = part of speech
 - `e` = English · `th` = Thai · `ja` = Japanese
 
-To **add HSK 4**, add a `"4":[ ... ]` array to `HSK_DATA` — the HSK course bar picks up new levels via the
-`hskGroups` list in `buildDatasets()`.
+**HSK 4 is already included.** To add a further level (e.g. **HSK 5**), just add a `"5":[ ... ]` array to
+`HSK_DATA`. The course is now **data-driven**: `buildDatasets()` reads every level key present in `HSK_DATA`,
+sorts them numerically, and the level menu + course name (e.g. *HSK 1–5*) update automatically — **no UI code changes needed**.
 
 ### Adding a whole new course (your own material)
 The app keeps each course in a `buildDatasets()` function near the top of the main script. There are two
@@ -116,5 +126,5 @@ Just **double-click `index.html`** — it opens in your browser. No installation
 
 ## 📚 Credits & license
 
-- Vocabulary: the official **New HSK** word lists (Levels 1–3). Thai & Japanese meanings are AI-generated study aids.
+- Vocabulary: the official **New HSK** word lists (Levels 1–4). Thai & Japanese meanings are AI-generated study aids (HSK 4 TH/JA pending).
 - Released under the **MIT License** — free to use, modify, and share.
