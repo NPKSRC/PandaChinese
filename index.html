@@ -121,6 +121,7 @@ body{
 .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--cloud);border-radius:var(--r-lg);box-shadow:var(--shadow);border:1.5px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 22px;text-align:center;overflow:hidden}
 .face .tag{position:absolute;top:14px;left:14px;font-family:var(--display);font-weight:700;font-size:.68rem;letter-spacing:.6px;text-transform:uppercase;color:var(--bamboo-deep);background:#e3efeb;padding:5px 11px;border-radius:999px}
 .face .statustag{position:absolute;top:14px;right:14px;font-family:var(--display);font-weight:800;font-size:.64rem;letter-spacing:.5px;text-transform:uppercase;padding:5px 10px;border-radius:999px;color:#fff}
+.face .leveltag{position:absolute;top:14px;left:50%;transform:translateX(-50%);font-family:var(--display);font-weight:800;font-size:.62rem;letter-spacing:.5px;text-transform:uppercase;padding:5px 10px;border-radius:999px;color:var(--bamboo-deep);background:#eef4f1;border:1.5px solid var(--line);white-space:nowrap}
 .st-new{background:var(--new)} .st-learning{background:var(--learning)} .st-familiar{background:var(--familiar)} .st-mastered{background:var(--mastered)}
 .face .hint{position:absolute;bottom:66px;left:50%;transform:translateX(-50%);font-size:.72rem;color:var(--ink-soft);font-weight:700;opacity:.55}
 .face .hardstar{position:absolute;bottom:12px;right:14px;font-size:1.1rem;cursor:pointer;opacity:.3;transition:opacity .15s,transform .15s;background:none;border:0;padding:4px}
@@ -870,6 +871,7 @@ function meaningLines(w){
   if(!out.length)out.push({k:"en",t:w.e||w.p||w.h});
   return out;
 }
+function levelTag(w){return w.ds==="lesson"?("Lesson "+w.grp):("HSK "+w.grp);}
 function renderCard(){
   var w=study.pool[study.idx];if(!w)return;
   var c=acct().cards[w.id];var st=statusOf(c);
@@ -878,6 +880,7 @@ function renderCard(){
   var hard=c&&c.hard;
   function hanCls(s){return s.length>6?" tiny":(s.length>3?" small":"");}
   var fHTML='<span class="tag">'+(front==="en"?"Meaning":front==="pin"?"Pinyin":"Hanzi")+'</span>'
+    +'<span class="leveltag">'+levelTag(w)+'</span>'
     +'<span class="statustag st-'+st+'">'+stl+'</span>';
   if(front==="han"){fHTML+='<div class="han'+hanCls(w.h)+'">'+w.h+'</div>';}
   else if(front==="pin"){fHTML+='<div class="han'+(w.p.length>8?" tiny":" small")+'">'+w.p+'</div><div class="sub">'+w.h+'</div>';}
@@ -887,7 +890,7 @@ function renderCard(){
   fHTML+='<span class="hint">tap to flip</span>';
   $("#cardFront").innerHTML=fHTML;
 
-  var mHTML='<span class="tag">Answer</span><span class="statustag st-'+st+'">'+stl+'</span>'
+  var mHTML='<span class="tag">Answer</span><span class="leveltag">'+levelTag(w)+'</span><span class="statustag st-'+st+'">'+stl+'</span>'
     +'<div class="han'+(w.h.length>6?" tiny":"")+'">'+w.h+'</div><div class="pin">'+w.p+'</div>'
     +(w.pos?'<div class="pos">'+w.pos+'</div>':'')+'<div class="meanings">';
   meaningLines(w).forEach(function(m){
@@ -945,22 +948,60 @@ function updateDueCounts(){
 function initSwipe(){
   var wrap=$("#cardWrap");var card=$("#card");
   var startX=0,startY=0,dx=0,dy=0,active=false,moved=false,axis=null;
-  function down(x,y){startX=x;startY=y;dx=0;dy=0;active=true;moved=false;axis=null;card.classList.add("dragging");}
+  var lastX=0,lastT=0,vx=0,W=window.innerWidth||360;
+  function baseRot(){return study.flipped?"rotateY(180deg) ":"";}
+  function clearAfter(ms){setTimeout(function(){card.style.transition="";card.style.transform="";card.style.opacity="";},ms);}
+  function down(x,y){startX=x;startY=y;dx=0;dy=0;active=true;moved=false;axis=null;lastX=x;lastT=Date.now();vx=0;W=window.innerWidth||360;card.style.transition="";card.classList.add("dragging");}
   function move(x,y){
     if(!active)return false;
     dx=x-startX;dy=y-startY;
+    var t=Date.now(),d=t-lastT;if(d>0){vx=(x-lastX)/d;lastX=x;lastT=t;}
     if(axis===null && (Math.abs(dx)>8||Math.abs(dy)>8)){axis=Math.abs(dx)>Math.abs(dy)?"h":"v";moved=true;}
     if(axis==="h"){
-      var rot=dx/18;
-      card.style.transform=(study.flipped?"rotateY(180deg) ":"")+"translateX("+dx+"px) rotate("+rot+"deg)";
+      var atStart=study.idx===0,atEnd=study.idx===study.pool.length-1;
+      var d2=((dx>0&&atStart)||(dx<0&&atEnd))?dx*0.35:dx; // rubber-band resistance at the ends
+      var rot=d2/22;
+      card.style.transform=baseRot()+"translateX("+d2+"px) rotate("+rot+"deg)";
+      card.style.opacity=String(Math.max(.5,1-Math.abs(d2)/640));
       return true; // horizontal: caller should block page scroll
     }
     return false;
   }
+  function snapBack(){
+    card.classList.remove("dragging");
+    card.style.transition="transform .42s cubic-bezier(.22,1,.36,1),opacity .3s ease";
+    card.style.transform=baseRot();card.style.opacity="1";
+    clearAfter(440);
+  }
+  function advance(dir){ // dir: "next" flings left, "prev" flings right
+    var canMove=dir==="next"?study.idx<study.pool.length-1:study.idx>0;
+    if(!canMove){snapBack();if(dir==="next")toast("That's the last card 🎋");return;}
+    var off=dir==="next"?-1:1;
+    card.classList.remove("dragging");
+    card.style.transition="transform .26s cubic-bezier(.4,0,.7,.4),opacity .26s ease";
+    card.style.transform=baseRot()+"translateX("+(off*W*1.05)+"px) rotate("+(off*12)+"deg)";
+    card.style.opacity="0";
+    setTimeout(function(){
+      card.style.transition="none";
+      if(dir==="next")study.idx++;else study.idx--;
+      study.flipped=false;setMood("idle");renderCard();
+      card.style.transform=baseRot()+"translateX("+(off*44)+"px)";card.style.opacity="0";
+      requestAnimationFrame(function(){requestAnimationFrame(function(){
+        card.style.transition="transform .4s cubic-bezier(.22,1,.36,1),opacity .3s ease";
+        card.style.transform=baseRot();card.style.opacity="1";
+        clearAfter(420);
+      });});
+    },260);
+  }
   function up(){
-    if(!active)return;active=false;card.classList.remove("dragging");card.style.transform="";
-    if(axis==="h"&&Math.abs(dx)>60){if(dx<0)nextCard(true);else prevCard(true);}
-    else if(!moved){flipCard();}
+    if(!active)return;active=false;
+    if(axis==="h"){
+      var fast=Math.abs(vx)>0.5,far=Math.abs(dx)>70;
+      if((fast||far)&&dx<0)advance("next");
+      else if((fast||far)&&dx>0)advance("prev");
+      else snapBack();
+    }else if(!moved){card.classList.remove("dragging");flipCard();}
+    else{card.classList.remove("dragging");card.style.transition="";card.style.transform="";card.style.opacity="";}
   }
   wrap.addEventListener("touchstart",function(e){if(e.target&&e.target.closest&&e.target.closest(".spk,.hardstar")){return;}down(e.touches[0].clientX,e.touches[0].clientY);},{passive:true});
   wrap.addEventListener("touchmove",function(e){
