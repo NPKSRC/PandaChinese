@@ -1,40 +1,95 @@
-# 🐼 Panda HSK — Chinese Vocabulary Trainer
+# 🐼 PandaChinese — HSK Chinese Vocabulary Trainer
 
-A friendly, single-file web app for learning **HSK 1–6** Chinese vocabulary (6100 words) with
-swipeable flashcards, spaced-repetition memory tracking, quizzes, and meanings in
-**English, Thai, and Japanese** (all HSK 1–6 now fully translated). Switch between built-in **courses** — the HSK 1–3 list or your own
-**class-lesson vocabulary** — right inside the app. Meet **Bao**, your panda study buddy, who *grows up* as you learn.
+A friendly, **single-file** web app for learning **HSK 1–6** Chinese vocabulary
+(**~6,100 words**, plus **105 class-lesson words**) with swipeable spaced-repetition
+flashcards, quizzes, and two built-in learning **games**. Read every word in
+**Simplified or Traditional** characters, with meanings in **English, Thai, and Japanese**.
+Meet **Bao**, your panda study buddy, who *grows up* as you learn.
 
-![level](https://img.shields.io/badge/HSK-1--6-4c9a4f) ![words](https://img.shields.io/badge/words-6100-2f6b33) ![langs](https://img.shields.io/badge/meanings-EN%20%C2%B7%20TH%20%C2%B7%20JA-3f7cc4) ![license](https://img.shields.io/badge/license-MIT-e7a83b)
+![level](https://img.shields.io/badge/HSK-1--6-3f8f5b) ![words](https://img.shields.io/badge/words-6100%2B-2f6b33) ![meanings](https://img.shields.io/badge/meanings-EN%20%C2%B7%20TH%20%C2%B7%20JA-3f7cc4) ![chars](https://img.shields.io/badge/characters-Simplified%20%C2%B7%20Traditional-e08b5a) ![license](https://img.shields.io/badge/license-MIT-e7a83b)
 
-## ✨ Features
+Everything lives in one file (`index.html`) — **no build step, no server, no dependencies**.
 
-- **Switchable courses (in-app)** — a **Course** selector lets you choose which vocabulary database is
-  active: **HSK 1–6** (6100 words) or **Class lessons** (organised by lesson, with example sentences).
-  Each course keeps its own memory progress, and the structure is built to add more courses later.
+---
 
-- **Compact level menu** — levels are now chosen from a single **dropdown menu** (showing the current
-  group, e.g. *HSK 4 · 1000 words*) instead of a long row of buttons, keeping the screen uncluttered.
-  The menu is **data-driven**: it lists whatever levels exist in the data, so adding HSK 5+ needs no UI changes.
+## ✨ What's inside
 
-- **Swipeable flashcards** — swipe ← / → (or drag with a mouse) to move between cards, tap to flip.
-  Choose to see 汉字, 拼音, or the meaning first. The deck **shuffles on every start**, and cards are sized
-  to show all three meaning languages at once without clipping.
-- **Memory tracking (spaced repetition)** — after each card, rate it **Again / Hard / Good / Easy**.
-  Every word earns a status — **New → Learning → Familiar → Mastered** — and reappears for review when it's due.
+PandaChinese is organised into **five sections** along the bottom nav:
+
+| Section | What it does |
+|---------|--------------|
+| **Study** | Swipeable SRS flashcards — the core learning loop. |
+| **Quiz** | Multiple-choice quizzes that feed your memory progress. |
+| **Browse** | Scan the whole word list for your chosen level/course. |
+| **Progress** | Your dashboard — XP, streaks, mastery, and growth breakdown. |
+| **Games** | Memory Match and Tone Hero, with per-level trophies. |
+
+---
+
+## 📖 Study — flashcards with memory tracking
+
+- **Swipeable cards** — swipe ← / → (or drag) between cards, tap to flip.
+  The deck **shuffles on every start**, and cards are sized to show all the meaning
+  languages at once without clipping.
+- **Always-visible rating buttons** — rate each card **Again / Hard / Good / Easy**
+  *without* having to flip it first. Ratings drive a Leitner-style spaced-repetition
+  schedule, so words come back for review exactly when they're due.
+- **Memory status** — every word earns a status: **New → Learning → Familiar → Mastered**.
   Star any word to flag it for extra review.
-- **Three meaning languages** — toggle **English / ไทย / 日本語** on and off independently on cards and in Browse.
-- **Quizzes** — pick a type (**Meaning, Hanzi, Listening, Mixed**), a pool
-  (**This level, Due for review, Marked hard**), and a length (10/20/30). Results feed back into your memory tracking.
-- **Bao grows with you** — your panda evolves through six stages
-  (Cub → Bamboo Scout → Clever → Scholar → Master → Sage) as you master words.
-- **Profiles, XP & dashboard** — create one or more local profiles, earn XP, keep a day streak, and see a
-  Progress dashboard with a memory map, mastery-by-level, a 7-day XP chart, and recent activity.
-- **Back up & sync** — export a profile to a backup code and restore it on another device (no account/server needed).
-- **Pronunciation** — tap 🔊 to hear any word (uses your browser's built-in Chinese voice where available). The speaker appears on **both the front and back** of each card.
-- **Mobile-first & offline** — fixed, no-jump layouts, large touch targets, and works offline once loaded.
+- **Simplified ↔ Traditional** — toggle between 简体 and 繁體 characters anywhere
+  characters appear; conversion is handled in-app with curated fixes for tricky homographs.
+- **Three meaning languages** — toggle **English / ไทย / 日本語** independently on the
+  card and in Browse.
+- **Pronunciation** — tap 🔊 on the front *or* back of a card to hear it (uses your
+  browser's built-in Chinese voice where available).
 
-Everything lives in one file (`index.html`) — no build step, no server, no dependencies.
+> **About the Thai & Japanese:** these meanings are **AI-generated study drafts** — great
+> for recognition and recall, though a native speaker may want to refine a few. English
+> meanings come from the official HSK lists.
+
+---
+
+## 🎮 Games
+
+Two games turn review into practice, each with its own setup screen showing your
+progress and a **trophy + confetti** celebration when you clear a whole HSK level.
+
+- **Memory Match** — flip-and-pair cards with zoned **Sun / Moon** card backs and
+  per-scope best scores. The level locks for the duration of a round so scores stay fair.
+- **Tone Hero** — identify the **tone** of a word against the clock.
+  - **Single mode** — single-character tone sprints (12 questions) with a combo
+    multiplier, a meaning hint, and best-score tracking.
+  - **Sequence mode** — multi-syllable words, broken into syllables by a built-in
+    pinyin syllabifier (with erhua support), so you tap the tone for each syllable in order.
+
+Every game tracks **which words you've cleared**, per level, so the progress bars on
+each game's setup screen fill in as you go.
+
+---
+
+## 📊 Progress, XP & profiles
+
+- **Bao grows with you** — your panda evolves through several growth stages as you
+  master words. Growth now comes from **both studying and playing games**, and the
+  Progress screen shows a **study-vs-games breakdown** so you can see where your gains
+  came from.
+- **XP & growth points** — XP is a lifetime running total; growth reflects your *current*
+  command of the deck (it recomputes live from how many cards you've mastered).
+- **Dashboard** — a memory map, mastery-by-level, an XP chart, day streak, and recent activity.
+- **Profiles** — create one or more local profiles, each with its own progress.
+- **Back up & sync** — export a profile to a backup code and restore it on another
+  device (no account or server needed).
+
+---
+
+## 📚 Courses & levels
+
+- **Courses** — switch between the built-in **HSK** course (~6,100 words) and a
+  **Class lessons** course (105 words, organised by lesson with example sentences).
+  Each course keeps its own memory progress.
+- **Cumulative HSK levels** — pick a single level *or* a cumulative range
+  (HSK 1–2, 1–3, 1–4, 1–5 …), so you can review everything learned so far in one pool.
+  The level menu is **data-driven** — it lists whatever levels exist in the data.
 
 ---
 
@@ -42,18 +97,11 @@ Everything lives in one file (`index.html`) — no build step, no server, no dep
 
 | File | What it is |
 |------|------------|
-| `index.html` | The complete app (vocabulary built in). **This is the only file you need to publish.** |
-| `vocab-data.js` | The vocabulary as clean, editable data (EN/TH/JA), now including HSK 4 & 5 — handy for adding HSK 6+ later. |
+| `index.html` | The complete app, vocabulary built in. **This is the only file you need to publish.** |
 | `README.md` | This file. |
-| `USER-GUIDE.md` / `USER-GUIDE.pdf` | A friendly guide for learners. |
 
-> **About the Thai & Japanese:** these meanings are **AI-generated study drafts**. They're great for
-> recognition and recall, but a native speaker may want to refine a few. English meanings come from the official lists.
->
-> **HSK 4 & 5 status:** the 1000 HSK 4 and 1600 HSK 5 words are included with **English** meanings now; their
-> **Thai & Japanese drafts are pending** and will be added in a later update. The app skips empty TH/JA
-> gracefully — and in the **Meanings** row the ไทย / 日本語 toggles are **hidden for levels that have no Thai/Japanese yet**,
-> so those cards simply show English until the drafts are added.
+The whole app — UI, logic, and all HSK 1–6 vocabulary — is inlined in `index.html`.
+It's mobile-first, works **offline** once loaded, and has no external dependencies.
 
 ---
 
@@ -62,13 +110,13 @@ Everything lives in one file (`index.html`) — no build step, no server, no dep
 No coding needed. About 5 minutes.
 
 ### 1. Create a new repository
-1. Sign in to [github.com](https://github.com) (free account is fine).
-2. Click the **+** top-right → **New repository**.
-3. Name it, e.g. `panda-hsk`. Set it **Public**. Click **Create repository**.
+1. Sign in to [github.com](https://github.com) (a free account is fine).
+2. Click **+** top-right → **New repository**.
+3. Name it, e.g. `panda-chinese`. Set it **Public**. Click **Create repository**.
 
-### 2. Upload the files
+### 2. Upload the file
 1. On the empty repo page, click **uploading an existing file** (or **Add file → Upload files**).
-2. Drag in **`index.html`** (and optionally the rest).
+2. Drag in **`index.html`**.
 3. Click **Commit changes**.
 
 ### 3. Turn on GitHub Pages
@@ -77,9 +125,9 @@ No coding needed. About 5 minutes.
 3. Branch **`main`**, folder **`/ (root)`**, click **Save**.
 
 ### 4. Visit your live app
-- Wait 1–2 minutes, refresh the Pages screen. A green box shows *"Your site is live at …"*:
+- Wait 1–2 minutes, refresh the Pages screen, and you'll see *"Your site is live at …"*:
   ```
-  https://YOUR-USERNAME.github.io/panda-hsk/
+  https://YOUR-USERNAME.github.io/panda-chinese/
   ```
 - Open it, bookmark it, share it. 🎉
 
@@ -87,35 +135,33 @@ No coding needed. About 5 minutes.
 
 ---
 
-## 🧩 Adding HSK 4 (or editing words)
+## 💾 Where is my progress stored?
 
-The app reads its words from one object, `HSK_DATA`, in the inlined `<script>` near the bottom of `index.html`.
-Each word now looks like this:
+Profiles, XP, streaks, game progress, and memory status are saved in your browser's
+**local storage on that device**. Clearing site data erases them — so use
+**Back up & sync** to copy a backup code and move a profile to another browser or device.
+
+---
+
+## 🧩 For maintainers — editing words & adding levels
+
+The app reads its words from one object, `HSK_DATA`, in the inlined `<script>` near the
+bottom of `index.html`. Each word looks like this:
 
 ```js
 {"h":"爱","p":"ài","pos":"verb","e":"to love","th":"รัก","ja":"愛する"}
 ```
+
 - `h` = hanzi · `p` = pinyin · `pos` = part of speech
 - `e` = English · `th` = Thai · `ja` = Japanese
 
-**HSK 4 and HSK 5 are already included.** To add a further level (e.g. **HSK 6**), just add a `"6":[ ... ]` array to
-`HSK_DATA`. The course is **data-driven**: `buildDatasets()` reads every level key present in `HSK_DATA`,
-sorts them numerically, and the level menu + course name (e.g. *HSK 1–6*) update automatically — **no UI code changes needed**.
+The course is **data-driven**: `buildDatasets()` reads every level key present in
+`HSK_DATA`, sorts them numerically, and the level menu + course name update
+automatically — **no UI code changes needed**. To add a further level, just add a new
+array (e.g. `"7":[ ... ]`) to `HSK_DATA`.
 
-### Adding a whole new course (your own material)
-The app keeps each course in a `buildDatasets()` function near the top of the main script. There are two
-built in — `hsk` (from `HSK_DATA`) and `lesson` (from `LESSON_DATA`). To add another course, drop in a new
-data object and push one more entry into the `sets` array with its `key`, `name`, `groups`, and normalised
-`words` (`{h,p,pos,e,th,ja,ex}`). It will appear automatically in the **Course** selector. Lesson-style data
-uses `{lesson, cn, py, en, th, jp, ex_cn, ex_py, ex_th}` and shows example sentences on the card back.
-
----
-
-## 💾 Where is my progress stored?
-
-Profiles, XP, streaks, and memory status are saved in your browser's local storage **on that device**.
-Clearing site data erases them — so use **Profile → Back up & sync** to copy a backup code and move a
-profile to another browser or device.
+Lesson-style data uses `{lesson, cn, py, en, th, jp, ex_cn, ex_py, ex_th}` and shows
+example sentences on the card back.
 
 ---
 
@@ -127,5 +173,6 @@ Just **double-click `index.html`** — it opens in your browser. No installation
 
 ## 📚 Credits & license
 
-- Vocabulary: the official **New HSK** word lists (Levels 1–5). Thai & Japanese meanings are AI-generated study aids (HSK 4 & 5 TH/JA pending).
+- Vocabulary: the official **New HSK** word lists. Thai & Japanese meanings are
+  AI-generated study aids.
 - Released under the **MIT License** — free to use, modify, and share.
