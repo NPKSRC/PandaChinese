@@ -1273,10 +1273,56 @@ var STAGES=[
   {min:300,name:"Master",cap:"A serious vocabulary, calmly mastered."},
   {min:600,name:"Sage",cap:"Wise, fluent and glowing with knowledge."}
 ];
+/* ---- Game achievements → mascot Growth (capped, learning stays the main path) ----
+   Games add to GROWTH on top of the study-derived base, but only up to GAME_CAP (~one stage).
+   Two mechanics share the budget:
+     • per-word clears, weighted by HSK level (harder words pay more) — normalised so a
+       full clear of every game lands exactly on PER_CLEAR_BUDGET, no matter the pool sizes.
+     • per-game quantity milestones (10/50/100/250/500/1000 cleared), each rung worth more.
+   It is all derived LIVE from a.cleared (no stored total), so it is idempotent, retroactive,
+   and can't double-count. GAME_KINDS lists the games that feed growth — add "ts" here (and a
+   matching branch in gameEligibleForGrowth) when Tone Hero Sequence ships, and it auto-calibrates. */
+var GAME_KINDS=["mm","th"];
+var PER_CLEAR_BUDGET=100, MILESTONE_CAP=50, GAME_CAP=150;
+var GAME_MILESTONES=[{n:10,gp:2},{n:50,gp:3},{n:100,gp:4},{n:250,gp:5},{n:500,gp:7},{n:1000,gp:10}];
+function gameClearWeight(w){var lv=+(w&&w.grp);return (lv>=1&&lv<=6)?lv:1;}
+function gameEligibleForGrowth(kind,w){
+  if(!w||!w.id)return false;
+  if(kind==="th")return !!(w.h&&w.h.length===1&&w.p);   // Tone Hero Single: single-char words
+  if(kind==="ts")return !!(w.h&&w.h.length>=2);          // Tone Hero Sequence (future): multi-syllable
+  return true;                                            // Memory Match + default: every word
+}
+var _gameMaxW=null;
+function gameMaxWeight(){
+  if(_gameMaxW!=null)return _gameMaxW;
+  var tot=0;
+  for(var gi=0;gi<GAME_KINDS.length;gi++){var k=GAME_KINDS[gi];
+    for(var i=0;i<ALL_WORDS.length;i++){var w=ALL_WORDS[i];if(gameEligibleForGrowth(k,w))tot+=gameClearWeight(w);}
+  }
+  _gameMaxW=tot||1;return _gameMaxW;
+}
+/* growth points a buddy earns from games right now (capped). */
+function gameGrowth(acct){
+  var earnedW=0,mileGP=0,cl=(acct&&acct.cleared)||{};
+  for(var gi=0;gi<GAME_KINDS.length;gi++){
+    var k=GAME_KINDS[gi],bucket=cl[k];if(!bucket)continue;
+    var cnt=0;
+    for(var cid in bucket){var w=WORD_BY_ID[cid];if(!w)continue;/* stale-id guard */ earnedW+=gameClearWeight(w);cnt++;}
+    for(var mi=0;mi<GAME_MILESTONES.length;mi++){if(cnt>=GAME_MILESTONES[mi].n)mileGP+=GAME_MILESTONES[mi].gp;}
+  }
+  var clearGP=PER_CLEAR_BUDGET*(earnedW/gameMaxWeight());
+  if(clearGP>PER_CLEAR_BUDGET)clearGP=PER_CLEAR_BUDGET;
+  if(mileGP>MILESTONE_CAP)mileGP=MILESTONE_CAP;
+  var g=clearGP+mileGP;if(g>GAME_CAP)g=GAME_CAP;
+  if(!isFinite(g)||g<0)g=0;
+  return g;
+}
 function growthPoints(acct){
   var m=0,f=0;
   for(var id in acct.cards){var s=statusOf(acct.cards[id]); if(s==="mastered")m++; else if(s==="familiar")f++;}
-  return {gp:m*3+f, mastered:m, familiar:f};
+  var studyGP=m*3+f;
+  var gameGP=gameGrowth(acct);
+  return {gp:Math.round(studyGP+gameGP), mastered:m, familiar:f, studyGP:studyGP, gameGP:Math.round(gameGP)};
 }
 function stageFromGP(gp){var s=1;for(var i=0;i<STAGES.length;i++){if(gp>=STAGES[i].min)s=i+1;}return s;}
 
@@ -1313,6 +1359,7 @@ function migrateAccount(a){
   if(!a.best)a.best={};if(!a.qStats)a.qStats={correct:0,total:0};
   if(!a.cleared)a.cleared={th:{},mm:{}};if(!a.cleared.th)a.cleared.th={};if(!a.cleared.mm)a.cleared.mm={};
   if(!a.gameTrophies)a.gameTrophies={};
+  if(!a.gameMilestones)a.gameMilestones={};
   if(!a.xpByDay)a.xpByDay={};if(!a.log)a.log=[];if(typeof a.xp!=="number")a.xp=0;if(typeof a.streak!=="number")a.streak=0;
 }
 function ensureAccount(){
@@ -2398,6 +2445,20 @@ function checkGameCompletion(kind){
     wins.forEach(function(w){trophyQueue.push({kind:kind,win:w});});
     if(!trophyShowing)showNextTrophy();
   }
+  // growth milestones: celebrate each newly-reached cumulative clear-count rung once
+  if(!a.gameMilestones)a.gameMilestones={};
+  var GLABEL={mm:"Memory Match",th:"Tone Hero",ts:"Tone Hero"};
+  var bk=(a.cleared&&a.cleared[kind])||{},cnt=0;
+  for(var cid in bk){if(WORD_BY_ID[cid])cnt++;}
+  for(var mi=0;mi<GAME_MILESTONES.length;mi++){
+    var ms=GAME_MILESTONES[mi],mk=kind+"|"+ms.n;
+    if(cnt>=ms.n&&!a.gameMilestones[mk]){
+      a.gameMilestones[mk]=1;saveDB();
+      (function(ms){setTimeout(function(){toast("🌱 +"+ms.gp+" growth · "+ms.n+" cleared in "+(GLABEL[kind]||"games")+"!","grow");},400);})(ms);
+    }
+  }
+  // a game clear may have lifted the buddy a whole stage — celebrate it like study does
+  flashGrowthMaybe();
 }
 
 var TROPHY_SVG='<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="tg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd76a"/><stop offset="1" stop-color="#e3811c"/></linearGradient></defs><path d="M34 22h52v10c0 16-9 27-26 27S34 48 34 32V22Z" fill="url(#tg)" stroke="#c96b12" stroke-width="2.5"/><path d="M34 26H22c-2 0-3 1-3 3 0 12 8 19 18 20" stroke="#c96b12" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M86 26h12c2 0 3 1 3 3 0 12-8 19-18 20" stroke="#c96b12" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="54" y="58" width="12" height="16" fill="url(#tg)" stroke="#c96b12" stroke-width="2"/><path d="M42 74h36l-4 12H46l-4-12Z" fill="url(#tg)" stroke="#c96b12" stroke-width="2.5" stroke-linejoin="round"/><rect x="38" y="86" width="44" height="10" rx="3" fill="url(#tg)" stroke="#c96b12" stroke-width="2.5"/><path d="M60 30l3.4 6.9 7.6 1.1-5.5 5.4 1.3 7.6L60 47l-6.8 3.6 1.3-7.6-5.5-5.4 7.6-1.1L60 30Z" fill="#fff" opacity=".92"/></svg>';
