@@ -202,6 +202,16 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
 .opts{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
 .chip{font-family:var(--display);font-weight:700;font-size:.8rem;cursor:pointer;background:var(--cloud);border:1.5px solid var(--line);color:var(--ink-soft);padding:8px 13px;border-radius:999px;transition:all .15s}
 .chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.study-optrow{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.study-optrow .opts-stack{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:8px}
+.study-optrow .opts{margin-bottom:0;justify-content:flex-start}
+.study-optrow .stage-side{flex:0 0 auto;min-height:0;margin:0;align-items:center}
+.study-optrow .stage-side .mascot{height:88px!important;width:auto!important}
+.study-optrow .optrow-div{flex:0 0 auto;align-self:stretch;width:1.5px;min-height:64px;background:var(--line);border-radius:2px;margin:2px 0}
+.study-optrow .study-actions{flex:0 0 auto;display:flex;flex-direction:column;gap:8px}
+.study-optrow .study-actions .btn{white-space:nowrap;width:100%}
+.btn-blue{background:#eaf2fb;color:#2c6cb0;border:1.5px solid #c4dbf2;box-shadow:var(--shadow-sm)}
+.btn-blue:hover{background:#dceafa}
 
 /* ---------- Quiz ---------- */
 .quiz-setup{background:var(--cloud);border-radius:var(--r-lg);box-shadow:var(--shadow);border:1.5px solid var(--line);padding:22px;margin-bottom:16px}
@@ -270,6 +280,13 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
 .bao-grow .gbar{height:12px;background:#fff;border:1.5px solid var(--line);border-radius:999px;overflow:hidden}
 .bao-grow .gbar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--bamboo));transition:width .5s}
 .bao-grow .glabel{display:flex;justify-content:space-between;font-size:.7rem;font-weight:800;color:var(--ink-soft);margin-top:6px}
+.bao-grow .gsplit{margin-top:9px}
+.bao-grow .gsplit .gs-bar{display:flex;height:7px;border-radius:999px;overflow:hidden;background:#fff;border:1.5px solid var(--line)}
+.bao-grow .gsplit .gs-bar i{display:block;height:100%;transition:width .5s}
+.bao-grow .gsplit .gs-leg{display:flex;justify-content:center;gap:16px;margin-top:7px;font-size:.64rem;font-weight:800;color:var(--ink-soft)}
+.bao-grow .gsplit .gs-leg span{display:inline-flex;align-items:center;gap:5px}
+.bao-grow .gsplit .gs-leg b{color:var(--ink)}
+.bao-grow .gsplit .gs-leg .dot{width:9px;height:9px;border-radius:3px;display:inline-block;flex:0 0 auto}
 .statgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
 .stat{background:var(--cloud);border:1.5px solid var(--line);border-radius:var(--r-md);padding:15px;box-shadow:var(--shadow-sm)}
 .stat .n{font-family:var(--display);font-weight:800;font-size:1.7rem;color:var(--ink);line-height:1}
@@ -647,17 +664,26 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
       <button class="lang-toggle" data-lang="ja" aria-pressed="false"><span class="dot"></span>日本語</button>
     </div>
 
-    <div class="stage"><div id="pandaStudy"></div></div>
-    <div class="speech" id="studySpeech">Tap the card, then rate how well you knew it.</div>
+    <div class="speech" id="studySpeech">Rate how well you knew it — tap the card to peek at the answer.</div>
 
-    <div class="opts" id="frontOpts">
-      <button class="chip" data-front="han" aria-pressed="true">汉字 first</button>
-      <button class="chip" data-front="pin" aria-pressed="false">拼音 first</button>
-      <button class="chip" data-front="en" aria-pressed="false">Meaning first</button>
-    </div>
-    <div class="opts" id="scriptOpts">
-      <button class="chip" data-script="simp" aria-pressed="true">简 Simplified</button>
-      <button class="chip" data-script="trad" aria-pressed="false">繁 Traditional</button>
+    <div class="study-optrow">
+      <div class="opts-stack">
+        <div class="opts" id="frontOpts">
+          <button class="chip" data-front="han" aria-pressed="true">汉字 first</button>
+          <button class="chip" data-front="pin" aria-pressed="false">拼音 first</button>
+          <button class="chip" data-front="en" aria-pressed="false">Meaning first</button>
+        </div>
+        <div class="opts" id="scriptOpts">
+          <button class="chip" data-script="simp" aria-pressed="true">简 Simplified</button>
+          <button class="chip" data-script="trad" aria-pressed="false">繁 Traditional</button>
+        </div>
+      </div>
+      <div class="optrow-div"></div>
+      <div class="study-actions">
+        <button class="btn btn-blue btn-sm" id="shuffleBtn">🔀 Shuffle</button>
+        <button class="btn btn-blue btn-sm" id="resetStudyBtn">↺ Restart</button>
+      </div>
+      <div class="stage stage-side"><div id="pandaStudy"></div></div>
     </div>
 
     <div class="studybar">
@@ -672,7 +698,7 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
       </div>
     </div>
 
-    <div class="rate" id="rateRow" style="display:none">
+    <div class="rate" id="rateRow">
       <button class="r-again" data-rate="again">Again<small>&lt; 1 min</small></button>
       <button class="r-hard" data-rate="hard">Hard<small>review soon</small></button>
       <button class="r-good" data-rate="good">Good<small>got it</small></button>
@@ -684,9 +710,7 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
       <button class="btn btn-round btn-ghost" id="nextBtn" aria-label="Next card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
     </div>
     <div class="controls">
-      <button class="btn btn-ghost btn-sm" id="shuffleBtn">🔀 Shuffle</button>
       <button class="btn btn-ghost btn-sm" id="dueBtn">⏰ Study due (<span id="dueCount">0</span>)</button>
-      <button class="btn btn-ghost btn-sm" id="resetStudyBtn">↺ Restart</button>
     </div>
   </section>
 
@@ -788,6 +812,7 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
       <div class="bao-grow">
         <div class="gbar"><i id="growBar" style="width:0"></i></div>
         <div class="glabel"><span id="growNow">0 growth</span><span id="growNext">Next: 20</span></div>
+        <div class="gsplit" id="growSplit" style="display:none"></div>
       </div>
     </div>
 
@@ -1539,7 +1564,7 @@ function renderCard(){
   $("#cardBack").innerHTML=mHTML;
 
   var card=$("#card");card.classList.toggle("flipped",study.flipped);
-  $("#rateRow").style.display=study.flipped?"grid":"none";
+  $("#rateRow").style.display="grid";
   $("#studyCounter").textContent=(study.idx+1)+" / "+study.pool.length;
   $("#studyBar").style.width=((study.idx+1)/study.pool.length*100)+"%";
   $("#prevBtn").disabled=study.idx===0;
@@ -1809,6 +1834,19 @@ function renderProgress(){
   $("#growBar").style.width=pct+"%";
   $("#growNow").textContent=g.gp+" growth";
   $("#growNext").textContent=stage<6?("Next: "+nextMin):"Max stage 🎉";
+  // growth source breakdown: jade = studying, amber = games (appears once games contribute)
+  var gs=$("#growSplit");
+  if(gs){
+    var gamePart=Math.max(0,g.gp-g.studyGP);
+    if(gamePart>0){
+      var gtot=g.studyGP+gamePart||1;var sp=Math.round(g.studyGP/gtot*100);
+      gs.style.display="";
+      gs.innerHTML='<div class="gs-bar"><i style="width:'+sp+'%;background:var(--bamboo)"></i>'
+        +'<i style="width:'+(100-sp)+'%;background:var(--gold)"></i></div>'
+        +'<div class="gs-leg"><span><i class="dot" style="background:var(--bamboo)"></i>Studying <b>'+g.studyGP+'</b></span>'
+        +'<span><i class="dot" style="background:var(--gold)"></i>Games <b>'+gamePart+'</b></span></div>';
+    } else { gs.style.display="none"; }
+  }
   $("#statXp").textContent=a.xp;
   $("#statStreak").textContent=a.streak;
   $("#statMastered").textContent=g.mastered;

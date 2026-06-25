@@ -1,0 +1,94 @@
+<svg viewBox="0 0 1060 660" xmlns="http://www.w3.org/2000/svg" font-family="'Outfit',system-ui,sans-serif">
+  <defs>
+    <style>
+      .ui{fill:#ffffff;stroke:#e6e3da;stroke-width:1.5;}
+      .uimute{fill:#f1efe8;stroke:#e6e3da;stroke-width:1.5;}
+      .frame{fill:none;stroke:#d9594c;stroke-width:2;stroke-dasharray:4 3;}
+      .lab{font-size:13px;fill:#1c2b29;font-weight:700;}
+      .lid{font-size:11px;fill:#6b7a76;font-weight:600;}
+      .small{font-size:11px;fill:#6b7a76;font-weight:700;}
+      .tiny{font-size:9px;fill:#9aa6a1;font-weight:700;}
+      .badge{fill:#d9594c;}
+      .bnum{fill:#ffffff;font-size:12px;font-weight:800;}
+      .title{font-size:22px;fill:#1c2b29;font-weight:800;}
+      .sub{font-size:12px;fill:#6b7a76;font-weight:700;}
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1060" height="660" fill="#f6f4ee"/>
+  <text x="40" y="34" class="title">📈 Progress screen — annotated map</text>
+  <text x="40" y="54" class="sub">The growth meter and the study-vs-games split are the parts we touched this session.</text>
+
+  <rect x="40" y="70" width="360" height="560" rx="26" fill="#ffffff" stroke="#e6e3da" stroke-width="2"/>
+
+  <!-- big buddy -->
+  <circle cx="220" cy="150" r="44" fill="#e3efeb" stroke="#cfe3dc" stroke-width="1.5"/>
+  <text x="220" y="164" font-size="44" text-anchor="middle">🐼</text>
+  <circle cx="220" cy="150" r="48" class="frame"/>
+  <circle cx="266" cy="116" r="11" class="badge"/><text x="262" y="120.5" class="bnum">1</text>
+
+  <!-- stage name/cap -->
+  <text x="220" y="216" font-size="18" fill="#1c2b29" font-weight="800" text-anchor="middle">Scout</text>
+  <text x="220" y="234" class="small" text-anchor="middle">Getting the hang of it!</text>
+  <rect x="120" y="200" width="200" height="40" rx="10" class="frame"/>
+  <circle cx="120" cy="200" r="11" class="badge"/><text x="116" y="204.5" class="bnum">2</text>
+
+  <!-- growth meter -->
+  <rect x="60" y="252" width="320" height="12" rx="6" class="uimute"/>
+  <rect x="60" y="252" width="150" height="12" rx="6" fill="url(#g)"/>
+  <linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#d99a3a"/><stop offset="1" stop-color="#1f7a6b"/></linearGradient>
+  <text x="64" y="282" class="small">42 growth</text>
+  <text x="376" y="282" class="small" text-anchor="end">Next: 60</text>
+  <rect x="58" y="246" width="324" height="44" rx="10" class="frame"/>
+  <circle cx="58" cy="246" r="11" class="badge"/><text x="54" y="250.5" class="bnum">3</text>
+
+  <!-- growth split -->
+  <rect x="60" y="298" width="320" height="7" rx="4" fill="#ffffff" stroke="#e6e3da"/>
+  <rect x="60" y="298" width="230" height="7" rx="0" fill="#1f7a6b"/>
+  <rect x="290" y="298" width="90" height="7" fill="#d99a3a"/>
+  <circle cx="150" cy="320" r="4" fill="#1f7a6b"/><text x="160" y="324" class="tiny">Studying 30</text>
+  <circle cx="252" cy="320" r="4" fill="#d99a3a"/><text x="262" y="324" class="tiny">Games 12</text>
+  <rect x="58" y="292" width="324" height="40" rx="10" class="frame"/>
+  <circle cx="382" cy="292" r="11" class="badge"/><text x="378" y="296.5" class="bnum">4</text>
+
+  <!-- stat tiles -->
+  <rect x="60" y="344" width="152" height="50" rx="12" class="ui"/><text x="136" y="368" class="lab" text-anchor="middle">1240</text><text x="136" y="384" class="tiny" text-anchor="middle">Total XP</text>
+  <rect x="228" y="344" width="152" height="50" rx="12" class="ui"/><text x="304" y="368" class="lab" text-anchor="middle">7</text><text x="304" y="384" class="tiny" text-anchor="middle">Day streak</text>
+  <rect x="60" y="402" width="152" height="50" rx="12" class="ui"/><text x="136" y="426" class="lab" text-anchor="middle">86</text><text x="136" y="442" class="tiny" text-anchor="middle">Words mastered</text>
+  <rect x="228" y="402" width="152" height="50" rx="12" class="ui"/><text x="304" y="426" class="lab" text-anchor="middle">78%</text><text x="304" y="442" class="tiny" text-anchor="middle">Quiz accuracy</text>
+  <rect x="56" y="340" width="328" height="116" rx="13" class="frame"/>
+  <circle cx="56" cy="340" r="11" class="badge"/><text x="52" y="344.5" class="bnum">5</text>
+
+  <!-- memory map -->
+  <g>
+    <text x="64" y="478" class="tiny">New</text><rect x="120" y="470" width="200" height="10" rx="5" class="uimute"/><rect x="120" y="470" width="60" height="10" rx="5" fill="#b7c0bb"/>
+    <text x="64" y="498" class="tiny">Learning</text><rect x="120" y="490" width="200" height="10" rx="5" class="uimute"/><rect x="120" y="490" width="90" height="10" rx="5" fill="#d99a3a"/>
+    <text x="64" y="518" class="tiny">Familiar</text><rect x="120" y="510" width="200" height="10" rx="5" class="uimute"/><rect x="120" y="510" width="120" height="10" rx="5" fill="#3f9d6e"/>
+    <text x="64" y="538" class="tiny">Mastered</text><rect x="120" y="530" width="200" height="10" rx="5" class="uimute"/><rect x="120" y="530" width="150" height="10" rx="5" fill="#155e52"/>
+  </g>
+  <rect x="56" y="462" width="328" height="86" rx="12" class="frame"/>
+  <circle cx="56" cy="462" r="11" class="badge"/><text x="52" y="466.5" class="bnum">6</text>
+
+  <!-- nav -->
+  <rect x="60" y="572" width="320" height="44" rx="12" class="uimute"/>
+  <text x="280" y="599" class="tiny" text-anchor="middle" fill="#1f7a6b" font-weight="800">Progress ◉</text>
+
+  <!-- legend -->
+  <text x="440" y="92" class="title" font-size="18">Legend</text>
+  <g transform="translate(440,118)"><circle cx="11" cy="0" r="11" class="badge"/><text x="7.5" y="4.5" class="bnum">1</text><text x="34" y="-2" class="lab">Big buddy</text><text x="34" y="13" class="lid">#pandaBig</text></g>
+  <g transform="translate(440,162)"><circle cx="11" cy="0" r="11" class="badge"/><text x="7.5" y="4.5" class="bnum">2</text><text x="34" y="-2" class="lab">Stage name + caption</text><text x="34" y="13" class="lid">#stageName · #stageCap</text></g>
+  <g transform="translate(440,206)"><circle cx="11" cy="0" r="11" class="badge"/><text x="7.5" y="4.5" class="bnum">3</text><text x="34" y="-2" class="lab">Growth meter</text><text x="34" y="13" class="lid">#growBar · #growNow · #growNext</text></g>
+  <g transform="translate(440,250)"><circle cx="11" cy="0" r="11" class="badge"/><text x="7.5" y="4.5" class="bnum">4</text><text x="34" y="-2" class="lab">Growth split (Studying / Games)</text><text x="34" y="13" class="lid">#growSplit · jade = study, amber = games</text></g>
+  <g transform="translate(440,294)"><circle cx="11" cy="0" r="11" class="badge"/><text x="7.5" y="4.5" class="bnum">5</text><text x="34" y="-2" class="lab">Stat tiles</text><text x="34" y="13" class="lid">#statXp · #statStreak · #statMastered · #statAcc</text></g>
+  <g transform="translate(440,338)"><circle cx="11" cy="0" r="11" class="badge"/><text x="7.5" y="4.5" class="bnum">6</text><text x="34" y="-2" class="lab">Memory map</text><text x="34" y="13" class="lid">#memoBars · coverage by status</text></g>
+
+  <g transform="translate(440,400)">
+    <rect x="0" y="-18" width="560" height="150" rx="14" fill="#fbfaf6" stroke="#e6e3da" stroke-width="1.5"/>
+    <text x="18" y="6" class="lab">Parked note #1 (room for improvement)</text>
+    <text x="18" y="28" class="lid">Marking Easy through one HSK level already maxes the buddy to</text>
+    <text x="18" y="46" class="lid">Sage, even with five levels left. Consider rescaling the stage</text>
+    <text x="18" y="64" class="lid">thresholds to the full ~6,205-word deck, or tying top stages to</text>
+    <text x="18" y="82" class="lid">multi-level coverage so the buddy keeps growing.</text>
+    <text x="18" y="110" class="lab">Parked note #2</text>
+    <text x="18" y="128" class="lid">Add a celebration pop-up when all flashcards in a level are done.</text>
+  </g>
+</svg>

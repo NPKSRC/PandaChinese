@@ -1,0 +1,205 @@
+<svg viewBox="0 0 1060 772" xmlns="http://www.w3.org/2000/svg" font-family="'Outfit',system-ui,sans-serif">
+  <defs>
+    <style>
+      .ui     { fill:#ffffff; stroke:#e6e3da; stroke-width:1.5; }
+      .uimute { fill:#f1efe8; stroke:#e6e3da; stroke-width:1.5; }
+      .chip   { fill:#ffffff; stroke:#e6e3da; stroke-width:1.5; }
+      .chipon { fill:#1c2b29; }
+      .blue   { fill:#eaf2fb; stroke:#c4dbf2; stroke-width:1.5; }
+      .frame  { fill:none; stroke:#d9594c; stroke-width:2; stroke-dasharray:4 3; }
+      .lab    { font-size:13px; fill:#1c2b29; font-weight:700; }
+      .lid    { font-size:11px; fill:#6b7a76; font-weight:600; }
+      .small  { font-size:11px; fill:#6b7a76; font-weight:700; }
+      .tiny   { font-size:9px;  fill:#9aa6a1; font-weight:700; }
+      .white  { fill:#ffffff; font-size:11px; font-weight:800; }
+      .badge  { fill:#d9594c; }
+      .bnum   { fill:#ffffff; font-size:12px; font-weight:800; }
+      .title  { font-size:22px; fill:#1c2b29; font-weight:800; }
+      .sub    { font-size:12px; fill:#6b7a76; font-weight:700; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1060" height="772" fill="#f6f4ee"/>
+  <text x="40" y="34" class="title">📖 Study screen — annotated map</text>
+  <text x="40" y="54" class="sub">Frames + numbers point to each part; the legend on the right gives the name and the code id.</text>
+
+  <!-- PHONE -->
+  <rect x="40" y="70" width="360" height="686" rx="26" fill="#ffffff" stroke="#e6e3da" stroke-width="2"/>
+
+  <!-- 1 brand bar -->
+  <rect x="60" y="86" width="320" height="38" rx="10" class="uimute"/>
+  <circle cx="82" cy="105" r="11" fill="#e3efeb"/>
+  <text x="102" y="103" class="lab">Panda HSK</text>
+  <text x="102" y="117" class="tiny">Learn Chinese with Bao</text>
+  <rect x="60" y="86" width="320" height="38" rx="10" class="frame"/>
+  <circle cx="60" cy="86" r="11" class="badge"/><text x="56.5" y="90.5" class="bnum">1</text>
+
+  <!-- 2 course bar -->
+  <rect x="60" y="132" width="320" height="30" rx="15" class="uimute"/>
+  <rect x="70" y="138" width="60" height="18" rx="9" class="chipon"/><text x="84" y="151" class="white">HSK 1</text>
+  <text x="142" y="151" class="small">HSK 1–2   HSK 1–3   …</text>
+  <rect x="60" y="132" width="320" height="30" rx="15" class="frame"/>
+  <circle cx="60" cy="132" r="11" class="badge"/><text x="56.5" y="136.5" class="bnum">2</text>
+
+  <!-- 3 meanings bar -->
+  <rect x="60" y="170" width="320" height="28" rx="14" class="ui"/>
+  <text x="72" y="188" class="small">Meanings:</text>
+  <rect x="132" y="175" width="58" height="18" rx="9" class="chip"/><text x="142" y="188" class="tiny">English</text>
+  <rect x="196" y="175" width="40" height="18" rx="9" class="chip"/><text x="205" y="188" class="tiny">ไทย</text>
+  <rect x="242" y="175" width="50" height="18" rx="9" class="chip"/><text x="251" y="188" class="tiny">日本語</text>
+  <rect x="60" y="170" width="320" height="28" rx="14" class="frame"/>
+  <circle cx="60" cy="170" r="11" class="badge"/><text x="56.5" y="174.5" class="bnum">3</text>
+
+  <!-- 4 speech hint -->
+  <rect x="60" y="206" width="320" height="26" rx="8" fill="none"/>
+  <text x="220" y="223" class="small" text-anchor="middle">Rate how well you knew it — tap to peek.</text>
+  <rect x="60" y="206" width="320" height="26" rx="8" class="frame"/>
+  <circle cx="60" cy="206" r="11" class="badge"/><text x="56.5" y="210.5" class="bnum">4</text>
+
+  <!-- 5 options row -->
+  <rect x="60" y="240" width="320" height="108" rx="12" fill="#fbfaf6" stroke="#e6e3da" stroke-width="1.5"/>
+  <!-- 6 front chips -->
+  <rect x="70" y="250" width="150" height="44" rx="10" fill="none"/>
+  <rect x="70" y="252" width="48" height="18" rx="9" class="chipon"/><text x="78" y="265" class="white">汉字</text>
+  <rect x="122" y="252" width="44" height="18" rx="9" class="chip"/><text x="129" y="265" class="tiny">拼音</text>
+  <rect x="70" y="274" width="92" height="18" rx="9" class="chip"/><text x="78" y="287" class="tiny">Meaning first</text>
+  <rect x="68" y="248" width="156" height="48" rx="10" class="frame"/>
+  <circle cx="68" cy="248" r="10" class="badge"/><text x="64.5" y="252" class="bnum">6</text>
+  <!-- 7 script chips -->
+  <rect x="70" y="300" width="150" height="20" rx="10" fill="none"/>
+  <rect x="70" y="300" width="74" height="18" rx="9" class="chipon"/><text x="78" y="313" class="white">简 Simplified</text>
+  <rect x="148" y="300" width="74" height="18" rx="9" class="chip"/><text x="156" y="313" class="tiny">繁 Traditional</text>
+  <rect x="68" y="298" width="158" height="22" rx="10" class="frame"/>
+  <circle cx="68" cy="320" r="10" class="badge"/><text x="64.5" y="324" class="bnum">7</text>
+  <!-- 8 divider -->
+  <rect x="240" y="252" width="2" height="84" rx="1" fill="#e6e3da"/>
+  <rect x="236" y="250" width="10" height="88" rx="4" class="frame"/>
+  <circle cx="241" cy="246" r="10" class="badge"/><text x="237.5" y="250" class="bnum">8</text>
+  <!-- 9 actions -->
+  <rect x="252" y="260" width="74" height="22" rx="8" class="blue"/><text x="289" y="274" class="tiny" fill="#2c6cb0" text-anchor="middle">🔀 Shuffle</text>
+  <rect x="252" y="288" width="74" height="22" rx="8" class="blue"/><text x="289" y="302" class="tiny" fill="#2c6cb0" text-anchor="middle">↺ Restart</text>
+  <rect x="250" y="256" width="78" height="58" rx="10" class="frame"/>
+  <circle cx="328" cy="256" r="10" class="badge"/><text x="324.5" y="260" class="bnum">9</text>
+  <!-- 10 buddy -->
+  <circle cx="352" cy="294" r="20" fill="#e3efeb" stroke="#cfe3dc" stroke-width="1.5"/>
+  <text x="352" y="300" font-size="20" text-anchor="middle">🐼</text>
+  <circle cx="352" cy="294" r="24" class="frame"/>
+  <circle cx="376" cy="272" r="10" class="badge"/><text x="372.5" y="276" class="bnum">10</text>
+  <!-- 5 frame -->
+  <rect x="58" y="238" width="324" height="112" rx="13" class="frame"/>
+  <circle cx="60" cy="240" r="11" class="badge"/><text x="56.5" y="244.5" class="bnum">5</text>
+
+  <!-- 11 study progress -->
+  <rect x="60" y="358" width="240" height="12" rx="6" class="uimute"/>
+  <rect x="60" y="358" width="80" height="12" rx="6" fill="#1f7a6b"/>
+  <text x="312" y="368" class="small">1 / 300</text>
+  <rect x="58" y="352" width="320" height="24" rx="8" class="frame"/>
+  <circle cx="58" cy="352" r="11" class="badge"/><text x="54" y="356.5" class="bnum">11</text>
+
+  <!-- 12 flashcard -->
+  <rect x="80" y="384" width="280" height="150" rx="18" fill="#ffffff" stroke="#e6e3da" stroke-width="1.5"/>
+  <text x="220" y="455" font-size="44" fill="#1c2b29" font-weight="700" text-anchor="middle">爱</text>
+  <text x="220" y="485" class="small" text-anchor="middle">tap to flip</text>
+  <rect x="78" y="382" width="284" height="154" rx="18" class="frame"/>
+  <circle cx="78" cy="382" r="11" class="badge"/><text x="74" y="386.5" class="bnum">12</text>
+
+  <!-- 13 rate row -->
+  <rect x="60" y="546" width="74" height="34" rx="10" fill="#d9594c"/><text x="97" y="567" class="white" text-anchor="middle">Again</text>
+  <rect x="142" y="546" width="74" height="34" rx="10" fill="#d99a3a"/><text x="179" y="567" class="white" text-anchor="middle">Hard</text>
+  <rect x="224" y="546" width="74" height="34" rx="10" fill="#1f7a6b"/><text x="261" y="567" class="white" text-anchor="middle">Good</text>
+  <rect x="306" y="546" width="74" height="34" rx="10" fill="#155e52"/><text x="343" y="567" class="white" text-anchor="middle">Easy</text>
+  <rect x="58" y="544" width="324" height="38" rx="11" class="frame"/>
+  <circle cx="58" cy="544" r="11" class="badge"/><text x="54" y="548.5" class="bnum">13</text>
+
+  <!-- 14 card nav -->
+  <circle cx="186" cy="610" r="20" class="ui"/><text x="186" y="616" class="lab" text-anchor="middle">‹</text>
+  <circle cx="254" cy="610" r="20" class="ui"/><text x="254" y="616" class="lab" text-anchor="middle">›</text>
+  <rect x="158" y="588" width="124" height="44" rx="14" class="frame"/>
+  <circle cx="158" cy="588" r="11" class="badge"/><text x="154" y="592.5" class="bnum">14</text>
+
+  <!-- 15 study due -->
+  <rect x="120" y="644" width="180" height="28" rx="10" class="ui"/>
+  <text x="210" y="662" class="small" text-anchor="middle">⏰ Study due (0)</text>
+  <rect x="118" y="642" width="184" height="32" rx="11" class="frame"/>
+  <circle cx="302" cy="642" r="11" class="badge"/><text x="298" y="646.5" class="bnum">15</text>
+
+  <!-- 16 bottom nav -->
+  <rect x="60" y="700" width="320" height="44" rx="12" class="uimute"/>
+  <text x="92"  y="727" class="tiny" text-anchor="middle">Study</text>
+  <text x="152" y="727" class="tiny" text-anchor="middle">Quiz</text>
+  <text x="212" y="727" class="tiny" text-anchor="middle">Browse</text>
+  <text x="280" y="727" class="tiny" text-anchor="middle">Progress</text>
+  <text x="348" y="727" class="tiny" text-anchor="middle">Games</text>
+  <rect x="60" y="700" width="320" height="44" rx="12" class="frame"/>
+  <circle cx="60" cy="700" r="11" class="badge"/><text x="56" y="704.5" class="bnum">16</text>
+
+  <!-- LEGEND -->
+  <text x="440" y="92" class="title" font-size="18">Legend</text>
+  <g>
+    <!-- rows -->
+    <g transform="translate(440,112)">
+      <circle cx="11" cy="0" r="11" class="badge"/><text x="7.5" y="4.5" class="bnum">1</text>
+      <text x="34" y="-2" class="lab">Brand bar</text><text x="34" y="13" class="lid">.brand · profile avatar opens #acctModal</text>
+    </g>
+    <g transform="translate(440,152)">
+      <circle cx="11" cy="0" r="11" class="badge"/><text x="7.5" y="4.5" class="bnum">2</text>
+      <text x="34" y="-2" class="lab">Course bar (scope)</text><text x="34" y="13" class="lid">#dsBar</text>
+    </g>
+    <g transform="translate(440,192)">
+      <circle cx="11" cy="0" r="11" class="badge"/><text x="7.5" y="4.5" class="bnum">3</text>
+      <text x="34" y="-2" class="lab">Meanings bar</text><text x="34" y="13" class="lid">#langbarStudy</text>
+    </g>
+    <g transform="translate(440,232)">
+      <circle cx="11" cy="0" r="11" class="badge"/><text x="7.5" y="4.5" class="bnum">4</text>
+      <text x="34" y="-2" class="lab">Speech hint</text><text x="34" y="13" class="lid">#studySpeech</text>
+    </g>
+    <g transform="translate(440,272)">
+      <circle cx="11" cy="0" r="11" class="badge"/><text x="7.5" y="4.5" class="bnum">5</text>
+      <text x="34" y="-2" class="lab">Options row</text><text x="34" y="13" class="lid">.study-optrow  (holds 6–10)</text>
+    </g>
+    <g transform="translate(440,312)">
+      <circle cx="11" cy="0" r="11" class="badge"/><text x="7.5" y="4.5" class="bnum">6</text>
+      <text x="34" y="-2" class="lab">Front-side chips</text><text x="34" y="13" class="lid">#frontOpts · 汉字 / 拼音 / Meaning first</text>
+    </g>
+    <g transform="translate(440,352)">
+      <circle cx="11" cy="0" r="11" class="badge"/><text x="7.5" y="4.5" class="bnum">7</text>
+      <text x="34" y="-2" class="lab">Script chips</text><text x="34" y="13" class="lid">#scriptOpts · 简 / 繁</text>
+    </g>
+    <g transform="translate(440,392)">
+      <circle cx="11" cy="0" r="11" class="badge"/><text x="7.5" y="4.5" class="bnum">8</text>
+      <text x="34" y="-2" class="lab">Options divider</text><text x="34" y="13" class="lid">.optrow-div · the thin vertical line</text>
+    </g>
+    <g transform="translate(440,432)">
+      <circle cx="11" cy="0" r="11" class="badge"/><text x="7.5" y="4.5" class="bnum">9</text>
+      <text x="34" y="-2" class="lab">Study actions (light blue)</text><text x="34" y="13" class="lid">.study-actions · #shuffleBtn · #resetStudyBtn</text>
+    </g>
+    <g transform="translate(440,472)">
+      <circle cx="11" cy="0" r="11" class="badge"/><text x="6" y="4.5" class="bnum">10</text>
+      <text x="34" y="-2" class="lab">Study buddy</text><text x="34" y="13" class="lid">#pandaStudy · tap to tickle</text>
+    </g>
+    <g transform="translate(440,512)">
+      <circle cx="11" cy="0" r="11" class="badge"/><text x="6" y="4.5" class="bnum">11</text>
+      <text x="34" y="-2" class="lab">Study progress bar</text><text x="34" y="13" class="lid">#studyBar · #studyCounter</text>
+    </g>
+    <g transform="translate(440,552)">
+      <circle cx="11" cy="0" r="11" class="badge"/><text x="6" y="4.5" class="bnum">12</text>
+      <text x="34" y="-2" class="lab">Flashcard</text><text x="34" y="13" class="lid">#card (front #cardFront / back #cardBack)</text>
+    </g>
+    <g transform="translate(440,592)">
+      <circle cx="11" cy="0" r="11" class="badge"/><text x="6" y="4.5" class="bnum">13</text>
+      <text x="34" y="-2" class="lab">Rating buttons</text><text x="34" y="13" class="lid">#rateRow · Again / Hard / Good / Easy</text>
+    </g>
+    <g transform="translate(440,632)">
+      <circle cx="11" cy="0" r="11" class="badge"/><text x="6" y="4.5" class="bnum">14</text>
+      <text x="34" y="-2" class="lab">Card nav arrows</text><text x="34" y="13" class="lid">#prevBtn · #nextBtn  (or swipe)</text>
+    </g>
+    <g transform="translate(440,672)">
+      <circle cx="11" cy="0" r="11" class="badge"/><text x="6" y="4.5" class="bnum">15</text>
+      <text x="34" y="-2" class="lab">Study due button</text><text x="34" y="13" class="lid">#dueBtn</text>
+    </g>
+    <g transform="translate(440,712)">
+      <circle cx="11" cy="0" r="11" class="badge"/><text x="6" y="4.5" class="bnum">16</text>
+      <text x="34" y="-2" class="lab">Bottom nav</text><text x="34" y="13" class="lid">.nav · Study / Quiz / Browse / Progress / Games</text>
+    </g>
+  </g>
+</svg>

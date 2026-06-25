@@ -1,0 +1,93 @@
+<svg viewBox="0 0 1100 560" xmlns="http://www.w3.org/2000/svg" font-family="'Outfit',system-ui,sans-serif">
+  <defs>
+    <style>
+      .ui{fill:#ffffff;stroke:#e6e3da;stroke-width:1.5;}
+      .uimute{fill:#f1efe8;stroke:#e6e3da;stroke-width:1.5;}
+      .chipon{fill:#1c2b29;}
+      .frame{fill:none;stroke:#d9594c;stroke-width:2;stroke-dasharray:4 3;}
+      .lab{font-size:12px;fill:#1c2b29;font-weight:700;}
+      .lid{font-size:10px;fill:#6b7a76;font-weight:600;}
+      .small{font-size:11px;fill:#6b7a76;font-weight:700;}
+      .tiny{font-size:9px;fill:#9aa6a1;font-weight:700;}
+      .white{fill:#ffffff;font-size:10px;font-weight:800;}
+      .badge{fill:#d9594c;}
+      .bnum{fill:#ffffff;font-size:11px;font-weight:800;}
+      .title{font-size:22px;fill:#1c2b29;font-weight:800;}
+      .htitle{font-size:15px;fill:#1c2b29;font-weight:800;}
+      .sub{font-size:12px;fill:#6b7a76;font-weight:700;}
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1100" height="560" fill="#f6f4ee"/>
+  <text x="40" y="34" class="title">🎮 Games · ❓ Quiz · ☰ Browse — annotated maps</text>
+  <text x="40" y="54" class="sub">The course bar (#dsBar) and bottom nav (.nav) sit on every screen; named once on Study.</text>
+
+  <!-- ===== GAMES ===== -->
+  <text x="60" y="84" class="htitle">🎮 Games — #view-games</text>
+  <rect x="40" y="94" width="300" height="440" rx="22" fill="#ffffff" stroke="#e6e3da" stroke-width="2"/>
+  <text x="60" y="128" class="lab">🎮 Games</text>
+  <text x="60" y="146" class="tiny">Pick a way to play with this scope.</text>
+  <!-- game card MM -->
+  <rect x="60" y="158" width="260" height="64" rx="14" class="ui"/>
+  <text x="84" y="196" font-size="22">🀄</text>
+  <text x="116" y="186" class="lab">Memory Match</text><text x="116" y="202" class="tiny">Pair each word with its match.</text>
+  <rect x="58" y="156" width="264" height="68" rx="14" class="frame"/>
+  <circle cx="58" cy="156" r="11" class="badge"/><text x="54" y="160.5" class="bnum">1</text>
+  <!-- game card TH -->
+  <rect x="60" y="234" width="260" height="64" rx="14" class="ui"/>
+  <circle cx="84" cy="266" r="15" fill="#e3efeb"/><text x="84" y="272" font-size="16" text-anchor="middle">🐼</text>
+  <text x="116" y="262" class="lab">Tone Hero</text><text x="116" y="278" class="tiny">Tap the tone for the character.</text>
+  <rect x="58" y="232" width="264" height="68" rx="14" class="frame"/>
+  <circle cx="322" cy="232" r="11" class="badge"/><text x="318" y="236.5" class="bnum">2</text>
+  <text x="60" y="470" class="tiny">(Each game shows its own setup +</text>
+  <text x="60" y="484" class="tiny">per-level trophy progress inside.)</text>
+  <rect x="60" y="496" width="260" height="30" rx="10" class="uimute"/><text x="290" y="515" class="tiny" text-anchor="middle" fill="#1f7a6b" font-weight="800">Games ◉</text>
+  <g transform="translate(48,318)"><circle cx="11" cy="0" r="11" class="badge"/><text x="7.5" y="4.5" class="bnum">1</text><text x="32" y="3" class="lid">#gameCardMM</text></g>
+  <g transform="translate(48,342)"><circle cx="11" cy="0" r="11" class="badge"/><text x="7.5" y="4.5" class="bnum">2</text><text x="32" y="3" class="lid">#gameCardTH (icon #gameCardTHIc)</text></g>
+  <g transform="translate(48,366)"><text x="0" y="3" class="lid">Hub container: #gamesHub</text></g>
+
+  <!-- ===== QUIZ ===== -->
+  <text x="400" y="84" class="htitle">❓ Quiz — #view-quiz</text>
+  <rect x="380" y="94" width="300" height="440" rx="22" fill="#ffffff" stroke="#e6e3da" stroke-width="2"/>
+  <text x="400" y="128" class="lab">Check your knowledge</text>
+  <text x="400" y="146" class="tiny">Pick a quiz to test what you've learned.</text>
+  <!-- quiz type -->
+  <rect x="400" y="160" width="260" height="44" rx="12" class="uimute"/>
+  <rect x="406" y="166" width="80" height="32" rx="9" class="chipon"/><text x="446" y="186" class="white" text-anchor="middle">Meaning</text>
+  <text x="520" y="186" class="small" text-anchor="middle">Hanzi</text><text x="610" y="186" class="small" text-anchor="middle">Listening</text>
+  <rect x="398" y="158" width="264" height="48" rx="12" class="frame"/>
+  <circle cx="398" cy="158" r="11" class="badge"/><text x="394" y="162.5" class="bnum">3</text>
+  <!-- speech -->
+  <text x="530" y="240" class="small" text-anchor="middle">Pick the right answer!</text>
+  <rect x="400" y="226" width="260" height="26" rx="8" class="frame"/>
+  <circle cx="400" cy="226" r="11" class="badge"/><text x="396" y="230.5" class="bnum">4</text>
+  <!-- answer area mock -->
+  <rect x="400" y="266" width="260" height="120" rx="14" class="ui"/>
+  <text x="530" y="316" font-size="32" text-anchor="middle" fill="#1c2b29" font-weight="700">谢谢</text>
+  <text x="530" y="344" class="tiny" text-anchor="middle">choose the meaning…</text>
+  <rect x="400" y="398" width="260" height="30" rx="10" class="uimute"/><text x="470" y="417" class="tiny" text-anchor="middle" fill="#1f7a6b" font-weight="800">Quiz ◉</text>
+  <g transform="translate(388,452)"><circle cx="11" cy="0" r="11" class="badge"/><text x="7.5" y="4.5" class="bnum">3</text><text x="32" y="3" class="lid">Quiz-type selector — #qType</text></g>
+  <g transform="translate(388,476)"><circle cx="11" cy="0" r="11" class="badge"/><text x="7.5" y="4.5" class="bnum">4</text><text x="32" y="3" class="lid">Quiz speech hint — #quizSpeech</text></g>
+  <g transform="translate(388,500)"><text x="0" y="3" class="lid">Setup container: #quizSetup</text></g>
+
+  <!-- ===== BROWSE ===== -->
+  <text x="760" y="84" class="htitle">☰ Browse — #view-browse</text>
+  <rect x="740" y="94" width="300" height="440" rx="22" fill="#ffffff" stroke="#e6e3da" stroke-width="2"/>
+  <!-- status filter -->
+  <rect x="760" y="120" width="260" height="30" rx="15" class="uimute"/>
+  <rect x="768" y="125" width="44" height="20" rx="10" class="chipon"/><text x="790" y="139" class="white" text-anchor="middle">New</text>
+  <text x="836" y="139" class="tiny">Learning</text><text x="900" y="139" class="tiny">Familiar</text><text x="966" y="139" class="tiny">Master</text>
+  <rect x="758" y="118" width="264" height="34" rx="16" class="frame"/>
+  <circle cx="758" cy="118" r="11" class="badge"/><text x="754" y="122.5" class="bnum">5</text>
+  <!-- list rows -->
+  <g>
+    <rect x="760" y="162" width="260" height="40" rx="10" class="ui"/><text x="772" y="186" class="lab">爱  ài</text><text x="1008" y="186" class="tiny" text-anchor="end">to love</text>
+    <rect x="760" y="208" width="260" height="40" rx="10" class="ui"/><text x="772" y="232" class="lab">八  bā</text><text x="1008" y="232" class="tiny" text-anchor="end">eight</text>
+    <rect x="760" y="254" width="260" height="40" rx="10" class="ui"/><text x="772" y="278" class="lab">爸爸 bàba</text><text x="1008" y="278" class="tiny" text-anchor="end">dad</text>
+    <rect x="760" y="300" width="260" height="40" rx="10" class="ui"/><text x="772" y="324" class="lab">茶  chá</text><text x="1008" y="324" class="tiny" text-anchor="end">tea</text>
+  </g>
+  <rect x="758" y="160" width="264" height="184" rx="12" class="frame"/>
+  <circle cx="1022" cy="160" r="11" class="badge"/><text x="1018" y="164.5" class="bnum">6</text>
+  <rect x="760" y="398" width="260" height="30" rx="10" class="uimute"/><text x="844" y="417" class="tiny" text-anchor="middle" fill="#1f7a6b" font-weight="800">Browse ◉</text>
+  <g transform="translate(748,452)"><circle cx="11" cy="0" r="11" class="badge"/><text x="7.5" y="4.5" class="bnum">5</text><text x="32" y="3" class="lid">Status filter — #statusFilter</text></g>
+  <g transform="translate(748,476)"><circle cx="11" cy="0" r="11" class="badge"/><text x="7.5" y="4.5" class="bnum">6</text><text x="32" y="3" class="lid">Word list — #browseList</text></g>
+</svg>
