@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1">
-<title>Panda HSK · Learn Chinese with Bao</title>
+<title>Peng HSK · HSK vocabulary flashcards</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%231f7a6b'/%3E%3Ctext x='20' y='20' font-size='25' font-weight='700' text-anchor='middle' dominant-baseline='central' fill='%23ffffff' font-family='sans-serif'%3E%E6%9C%8B%3C/text%3E%3C/svg%3E">
 <meta name="description" content="Learn HSK 1–3 Chinese vocabulary with swipeable flashcards, quizzes, spaced-repetition memory tracking and English/Thai/Japanese meanings. Grow your panda Bao as you learn.">
 <meta name="theme-color" content="#1f7a6b">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,8 +44,6 @@ body{
 .brand-text h1{font-family:var(--display);font-weight:800;font-size:1.22rem;line-height:1;margin:0;letter-spacing:.2px}
 .brand-text p{margin:3px 0 0;font-size:.72rem;color:var(--ink-soft);font-weight:700;letter-spacing:.4px;text-transform:uppercase}
 .topbar-right{margin-left:auto;display:flex;align-items:center;gap:8px}
-.streak{display:flex;align-items:center;gap:6px;background:var(--cloud);border:1.5px solid var(--line);padding:8px 12px;border-radius:999px;font-weight:800;font-size:.9rem;box-shadow:var(--shadow-sm);white-space:nowrap}
-.streak .flame{font-size:1rem}
 .acct-chip{display:flex;align-items:center;gap:8px;background:var(--cloud);border:1.5px solid var(--line);padding:5px 10px 5px 5px;border-radius:999px;box-shadow:var(--shadow-sm);cursor:pointer;font-family:var(--display);font-weight:800;font-size:.9rem}
 .acct-chip .av{width:34px;height:34px;border-radius:50%;background:var(--bamboo-tint);display:grid;place-items:center;font-size:1.15rem;flex:none}
 .acct-chip .xp{font-size:.7rem;color:var(--bamboo-deep);font-weight:800}
@@ -58,6 +57,10 @@ body{
 .dsbar button{flex:0 0 auto;border:1.5px solid var(--line);background:var(--cloud);color:var(--ink-soft);font-family:var(--display);font-weight:700;font-size:.84rem;padding:8px 15px;border-radius:999px;cursor:pointer;transition:all .15s;white-space:nowrap;box-shadow:var(--shadow-sm)}
 .dsbar button[aria-pressed="true"]{background:var(--bamboo);border-color:var(--bamboo);color:#fff}
 .levels{position:relative;display:flex;margin:2px 0 12px}
+.ctrlrow{display:flex;align-items:center;gap:10px;margin:2px 0 12px;flex-wrap:wrap}
+.ctrlrow .levels{flex:1 1 auto;min-width:150px;margin:0}
+.ctrlrow .langbar{flex:0 0 auto;flex-wrap:nowrap;margin:0}
+.ctrlrow.solo .levels{flex-basis:100%}
 .lm-trigger{display:flex;align-items:center;gap:12px;width:100%;background:var(--cloud);border:1.5px solid var(--bamboo);border-radius:var(--r-md);padding:9px 11px 9px 15px;cursor:pointer;transition:box-shadow .18s,background .18s}
 .lm-trigger:hover{background:var(--paper);box-shadow:var(--shadow)}
 .lm-left{display:flex;flex-direction:column;align-items:flex-start;gap:0;flex:1;text-align:left}
@@ -68,7 +71,7 @@ body{
 .lm-chev{flex:none;width:30px;height:30px;border-radius:9px;background:var(--bamboo);color:#fff;display:grid;place-items:center;font-size:.82rem;line-height:1;transition:transform .2s,background .18s}
 .lm-trigger:hover .lm-chev{background:var(--bamboo-deep)}
 .lm-trigger[aria-expanded="true"] .lm-chev{transform:rotate(180deg)}
-.lm-pop{position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:50;background:var(--cloud);border:1.5px solid var(--line);border-radius:var(--r-md);box-shadow:var(--shadow);padding:6px;max-height:320px;overflow-y:auto}
+.lm-pop{position:absolute;top:calc(100% + 6px);left:0;right:auto;min-width:280px;max-width:min(92vw,360px);z-index:50;background:var(--cloud);border:1.5px solid var(--line);border-radius:var(--r-md);box-shadow:var(--shadow);padding:6px;max-height:320px;overflow-y:auto}
 .lm-pop[hidden]{display:none}
 .lm-item{display:flex;align-items:center;gap:8px;width:100%;border:0;background:transparent;cursor:pointer;padding:11px 12px;border-radius:11px;text-align:left;transition:background .15s}
 .lm-item:hover{background:var(--paper-2)}
@@ -333,10 +336,33 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
 .row .sdot{font-family:var(--display);font-weight:800;font-size:.6rem;color:#fff;padding:3px 8px;border-radius:999px;text-transform:uppercase;letter-spacing:.4px}
 .row .spk{width:38px;height:38px}.row .spk svg{width:19px;height:19px}
 .empty{text-align:center;color:var(--ink-soft);font-weight:700;padding:40px 10px}
+.guide-intro{background:var(--bamboo-tint);border:1.5px solid var(--bamboo);border-radius:var(--r-lg);padding:18px 20px;margin-bottom:14px}
+.guide-intro h2{font-family:var(--display);font-size:1.25rem;margin:0 0 4px;color:var(--bamboo-deep)}
+.guide-intro p{margin:0;color:var(--ink-soft);font-weight:600;font-size:.9rem;line-height:1.5}
+.guide-card{background:var(--cloud);border:1.5px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-sm);padding:16px 18px;margin-bottom:12px}
+.guide-card h3{font-family:var(--display);font-size:1.04rem;margin:0 0 8px;color:var(--ink)}
+.guide-card p{margin:0 0 8px;color:var(--ink-soft);font-weight:600;font-size:.86rem;line-height:1.55}
+.guide-card p:last-child{margin-bottom:0}
+.guide-card ul{margin:0;padding-left:18px;color:var(--ink-soft);font-weight:600;font-size:.86rem;line-height:1.6}
+.guide-card li{margin-bottom:5px}
+.guide-card b{color:var(--ink);font-weight:800}
+.gpill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:.74rem;font-weight:800;color:#fff;white-space:nowrap}
+.g-again{background:var(--seal)}.g-hard{background:var(--gold)}.g-good{background:var(--bamboo)}.g-easy{background:var(--bamboo-deep)}
+.g-new{background:var(--new)}.g-learning{background:var(--learning)}.g-familiar{background:var(--familiar)}.g-mastered{background:var(--mastered)}
+.guide-langbar{display:flex;gap:8px;justify-content:flex-end;margin:0 0 14px}
+.glang-toggle{font-family:var(--display);font-weight:800;font-size:.82rem;cursor:pointer;background:var(--cloud);border:1.5px solid var(--line);color:var(--ink-soft);padding:7px 15px;border-radius:9px;display:inline-flex;align-items:center;gap:7px}
+.glang-toggle .dot{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.glang-toggle[aria-pressed="true"]{color:#fff;border-color:transparent}
+.glang-toggle[data-glang="en"][aria-pressed="true"]{background:var(--bamboo)}
+.glang-toggle[data-glang="th"][aria-pressed="true"]{background:var(--gold)}
+.glang-toggle[data-glang="ja"][aria-pressed="true"]{background:var(--seal)}
+.glang-toggle[aria-pressed="true"] .dot{background:rgba(255,255,255,.9)}
+.guide-lang[hidden]{display:none}
 
 /* ---------- Progress / Dashboard ---------- */
 .bao-hero{background:linear-gradient(160deg,#eef5f2,#e3efeb);border-radius:var(--r-lg);border:1.5px solid var(--line);box-shadow:var(--shadow-sm);padding:20px;text-align:center;margin-bottom:14px;position:relative;overflow:hidden}
-.bao-hero .stagename{font-family:var(--display);font-weight:800;font-size:1.4rem;color:var(--bamboo-deep);margin-top:6px}
+.bao-hero .bao-owner{font-family:var(--display);font-weight:800;font-size:1.12rem;color:var(--ink);margin-bottom:6px;letter-spacing:.2px}
+.stagename{font-family:var(--display);font-weight:800;font-size:1.4rem;color:var(--bamboo-deep);margin-top:6px}
 .bao-hero .stagecap{font-size:.78rem;font-weight:700;color:var(--ink-soft);margin-top:2px}
 .bao-grow{margin-top:14px}
 .bao-grow .gbar{height:12px;background:#fff;border:1.5px solid var(--line);border-radius:999px;overflow:hidden}
@@ -439,8 +465,8 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
 
 /* ---------- Bottom nav ---------- */
 .nav{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.93);backdrop-filter:blur(10px);border-top:1.5px solid var(--line);display:flex;justify-content:center;padding:8px 8px calc(8px + env(safe-area-inset-bottom))}
-.nav-inner{display:flex;gap:4px;max-width:560px;width:100%;justify-content:space-around}
-.nav button{flex:1;max-width:130px;border:0;background:transparent;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;font-family:var(--display);font-weight:700;font-size:.72rem;color:var(--ink-soft);padding:6px 4px;border-radius:14px;transition:all .15s}
+.nav-inner{display:flex;gap:3px;max-width:560px;width:100%;justify-content:space-around}
+.nav button{flex:1;max-width:130px;border:0;background:transparent;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;font-family:var(--display);font-weight:700;font-size:.66rem;color:var(--ink-soft);padding:6px 2px;border-radius:14px;transition:all .15s;white-space:nowrap}
 .nav button svg{width:24px;height:24px}
 .nav button[aria-pressed="true"]{color:var(--bamboo-deep);background:#e3efeb}
 
@@ -663,8 +689,8 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
 <div id="landing" class="landing">
   <div class="landing-card">
     <div class="landing-hero stage" id="landingMascot"></div>
-    <h1 class="landing-title">Panda HSK</h1>
-    <p class="landing-sub">Your trilingual Chinese flashcard buddy — EN · ไทย · 日本語.</p>
+    <h1 class="landing-title">Peng HSK</h1>
+    <p class="landing-sub">HSK vocab flashcards — EN · ไทย · 日本語</p>
 
     <div id="landingProfiles" class="landing-profiles"></div>
 
@@ -694,19 +720,11 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
   <header class="topbar">
     <div class="brand">
       <div class="seal-logo" aria-hidden="true">
-        <svg viewBox="0 0 40 40" fill="none">
-          <circle cx="20" cy="22" r="13" fill="#fff"/>
-          <circle cx="11" cy="11" r="5" fill="#20211e"/><circle cx="29" cy="11" r="5" fill="#20211e"/>
-          <ellipse cx="14.5" cy="20" rx="3.4" ry="4.4" fill="#20211e"/><ellipse cx="25.5" cy="20" rx="3.4" ry="4.4" fill="#20211e"/>
-          <circle cx="14.5" cy="20.5" r="1.5" fill="#fff"/><circle cx="25.5" cy="20.5" r="1.5" fill="#fff"/>
-          <ellipse cx="20" cy="26" rx="2.6" ry="2" fill="#20211e"/>
-          <path d="M20 28 Q20 31 17 31 M20 28 Q20 31 23 31" stroke="#20211e" stroke-width="1.4" stroke-linecap="round"/>
-        </svg>
+        <span style="font-family:'Noto Sans SC',sans-serif;font-weight:700;font-size:30px;line-height:1;color:#fff;transform:translateY(-1px)">朋</span>
       </div>
-      <div class="brand-text"><h1>Panda HSK</h1><p>Learn Chinese with Bao</p></div>
+      <div class="brand-text"><h1>Peng HSK</h1><p>HSK vocabulary with little friends</p></div>
     </div>
     <div class="topbar-right">
-      <div class="streak" title="Day streak"><span class="flame">🎋</span><span id="streakNum">0</span></div>
       <button class="acct-chip" id="acctChip" aria-label="Account">
         <span class="av" id="acctAv">🐼</span>
         <span class="who"><b id="acctName">Guest</b><span class="xp" id="acctXp">0 XP</span></span>
@@ -715,16 +733,17 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
   </header>
 
   <div class="dsbar" id="dsBar" aria-label="Choose course"></div>
-  <nav class="levels" id="levels" aria-label="Choose group"></nav>
+  <div class="ctrlrow" id="ctrlRow">
+    <nav class="levels" id="levels" aria-label="Choose group"></nav>
+    <div class="langbar" id="langbarStudy" aria-label="Card meanings">
+      <button class="lang-toggle" data-lang="en" aria-pressed="true"><span class="dot"></span>EN</button>
+      <button class="lang-toggle" data-lang="th" aria-pressed="false"><span class="dot"></span>TH</button>
+      <button class="lang-toggle" data-lang="ja" aria-pressed="false"><span class="dot"></span>JP</button>
+    </div>
+  </div>
 
   <!-- ===== STUDY ===== -->
   <section class="view active" id="view-study">
-    <div class="langbar" id="langbarStudy">
-      <span class="lbl">Meanings:</span>
-      <button class="lang-toggle" data-lang="en" aria-pressed="true"><span class="dot"></span>English</button>
-      <button class="lang-toggle" data-lang="th" aria-pressed="false"><span class="dot"></span>ไทย</button>
-      <button class="lang-toggle" data-lang="ja" aria-pressed="false"><span class="dot"></span>日本語</button>
-    </div>
 
     <div class="speech" id="studySpeech">Rate how well you knew it — tap the card to peek at the answer.</div>
 
@@ -782,7 +801,7 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
       <button class="btn btn-round btn-ghost" id="prevBtn" aria-label="Previous card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
       <button class="btn btn-round btn-ghost" id="nextBtn" aria-label="Next card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
     </div>
-    <div class="controls">
+    <div class="controls" id="dueRow" style="display:none">
       <button class="btn btn-ghost btn-sm" id="dueBtn">⏰ Study due (<span id="dueCount">0</span>)</button>
     </div>
   </section>
@@ -879,6 +898,7 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
   <!-- ===== PROGRESS / BAO ===== -->
   <section class="view" id="view-progress">
     <div class="bao-hero">
+      <div class="bao-owner" id="progOwner"></div>
       <div class="stage" style="min-height:140px"><div id="pandaBig"></div></div>
       <div class="stagename" id="stageName">Cub</div>
       <div class="stagecap" id="stageCap">Just starting the adventure into Chinese!</div>
@@ -891,7 +911,6 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
 
     <div class="statgrid">
       <div class="stat"><div class="n" id="statXp">0</div><div class="l">Total XP</div></div>
-      <div class="stat"><div class="n" id="statStreak">0</div><div class="l">Day streak</div></div>
       <div class="stat"><div class="n" id="statMastered">0</div><div class="l">Words mastered</div></div>
       <div class="stat"><div class="n" id="statAcc">—</div><div class="l">Quiz accuracy</div></div>
     </div>
@@ -1084,8 +1103,209 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
     </div><!-- /thWrap -->
   </section>
 
-  <p class="note">Vocabulary: <b>HSK 1–3</b> · 1000 words. English meanings from the official lists; <b>Thai &amp; Japanese</b> are study aids.</p>
-  <p class="disclaimer">Thai &amp; Japanese translations are AI-generated drafts — a native speaker may refine some. Accounts &amp; progress are saved on this device.</p>
+  <!-- ===== GUIDE ===== -->
+  <section class="view" id="view-guide">
+    <div class="guide-langbar" aria-label="Manual language">
+      <button class="glang-toggle" data-glang="en" aria-pressed="true"><span class="dot"></span>EN</button>
+      <button class="glang-toggle" data-glang="th" aria-pressed="false"><span class="dot"></span>TH</button>
+      <button class="glang-toggle" data-glang="ja" aria-pressed="false"><span class="dot"></span>JP</button>
+    </div>
+    <div class="guide-lang" data-glang="en">
+    <div class="guide-intro">
+      <h2>Welcome to Peng HSK 朋</h2>
+      <p>Learn HSK Chinese vocabulary with flashcards, quizzes and games — meanings in English, Thai and Japanese, and a few little friends cheering you on.</p>
+    </div>
+
+    <div class="guide-card">
+      <h3>The tabs</h3>
+      <ul>
+        <li><b>Study</b> — flip and rate flashcards. This is where learning happens.</li>
+        <li><b>Quiz</b> — test yourself with multiple-choice rounds.</li>
+        <li><b>Browse</b> — search and skim every word in your level.</li>
+        <li><b>Progress</b> — watch your buddy grow as you learn.</li>
+        <li><b>Games</b> — Tone Hero and Memory Match for playful practice.</li>
+      </ul>
+    </div>
+
+    <div class="guide-card">
+      <h3>Studying a card</h3>
+      <p>Tap a card to flip between the prompt and the answer. Swipe, or use the arrows, to move between cards.</p>
+      <p>After each card, tell the app how it went — this schedules when you'll see it again:</p>
+      <p><span class="gpill g-again">Again</span> didn't know it &nbsp; <span class="gpill g-hard">Hard</span> shaky &nbsp; <span class="gpill g-good">Good</span> got it &nbsp; <span class="gpill g-easy">Easy</span> too simple</p>
+    </div>
+
+    <div class="guide-card">
+      <h3>Choosing what you see</h3>
+      <ul>
+        <li><b>Choose level</b> — the dropdown at the top picks which HSK band you study (single levels, cumulative ranges, or all).</li>
+        <li><b>Meanings (EN / TH / JP)</b> — pick which languages show on the back of cards and in Browse. Turn on as many as you like.</li>
+        <li><b>Front &amp; Script</b> — set what appears on the front of a card (hanzi, pinyin, meaning…) and switch between 简 Simplified and 繁 Traditional.</li>
+      </ul>
+    </div>
+
+    <div class="guide-card">
+      <h3>How words progress</h3>
+      <p>Each word climbs four stages as you keep getting it right. The better you know it, the less often it returns:</p>
+      <p><span class="gpill g-new">New</span> → <span class="gpill g-learning">Learning</span> → <span class="gpill g-familiar">Familiar</span> → <span class="gpill g-mastered">Mastered</span></p>
+      <p>Tap the <b>★</b> on a card to add it to your <b>★ Review</b> list. When review cards are waiting, a <b>⏰ Study due</b> button appears to gather them for you.</p>
+    </div>
+
+    <div class="guide-card">
+      <h3>Browse</h3>
+      <p>Search by hanzi, pinyin, or any of the three meaning languages. The filter chips narrow the list to one stage — New, Learning, Familiar, Mastered — or your starred <b>★ Review</b> words. Meanings follow whichever EN / TH / JP toggles you've turned on.</p>
+    </div>
+
+    <div class="guide-card">
+      <h3>Games</h3>
+      <ul>
+        <li><b>Tone Hero</b> — read or hear a syllable and pick its tone. A combo streak multiplies your score.</li>
+        <li><b>Memory Match</b> — flip cards to pair hanzi with meanings, one level at a time.</li>
+      </ul>
+      <p>Clearing words in games also feeds your buddy's growth.</p>
+    </div>
+
+    <div class="guide-card">
+      <h3>Your buddy &amp; growth</h3>
+      <p>Studying and playing earn XP and grow your little friend through six stages. The <b>Progress</b> tab shows how far you've come and what's next.</p>
+    </div>
+
+    <div class="guide-card">
+      <h3>Profiles &amp; backup</h3>
+      <p>Each learner can keep their own profile on this device. From the account chip you can switch profiles and copy a <b>backup code</b> — save it somewhere safe to restore your progress later, or on another device.</p>
+    </div>
+    </div>
+    <div class="guide-lang" data-glang="th" hidden>
+      <div class="guide-intro">
+        <h2>ยินดีต้อนรับสู่ Peng HSK 朋</h2>
+        <p>เรียนคำศัพท์ภาษาจีน HSK ด้วยบัตรคำ แบบทดสอบ และเกม — พร้อมความหมายภาษาอังกฤษ ไทย และญี่ปุ่น และมีเพื่อนตัวน้อยคอยเป็นกำลังใจให้</p>
+      </div>
+
+      <div class="guide-card">
+        <h3>แท็บต่าง ๆ</h3>
+        <ul>
+          <li><b>Study</b> — พลิกและให้คะแนนบัตรคำ นี่คือหัวใจของการเรียน</li>
+          <li><b>Quiz</b> — ทดสอบตัวเองด้วยแบบทดสอบแบบเลือกตอบ</li>
+          <li><b>Browse</b> — ค้นหาและดูคำศัพท์ทั้งหมดในระดับของคุณ</li>
+          <li><b>Progress</b> — ดูเพื่อนของคุณเติบโตไปพร้อมการเรียน</li>
+          <li><b>Games</b> — Tone Hero และ Memory Match ฝึกแบบสนุก ๆ</li>
+        </ul>
+      </div>
+
+      <div class="guide-card">
+        <h3>การเรียนด้วยบัตรคำ</h3>
+        <p>แตะที่บัตรเพื่อพลิกดูคำถามและคำตอบ ปัดหรือใช้ปุ่มลูกศรเพื่อเลื่อนไปบัตรถัดไป</p>
+        <p>หลังจบแต่ละบัตร ให้บอกแอปว่าคุณจำได้แค่ไหน เพื่อกำหนดว่าจะเห็นคำนี้อีกครั้งเมื่อไร:</p>
+        <p><span class="gpill g-again">Again</span> ยังไม่รู้ &nbsp; <span class="gpill g-hard">Hard</span> ยังไม่แม่น &nbsp; <span class="gpill g-good">Good</span> จำได้ &nbsp; <span class="gpill g-easy">Easy</span> ง่ายเกินไป</p>
+      </div>
+
+      <div class="guide-card">
+        <h3>เลือกสิ่งที่จะแสดง</h3>
+        <ul>
+          <li><b>Choose level</b> — เมนูด้านบนเลือกระดับ HSK ที่จะเรียน (ระดับเดียว ช่วงสะสม หรือทั้งหมด)</li>
+          <li><b>Meanings (EN / TH / JP)</b> — เลือกภาษาที่จะแสดงความหมายบนด้านหลังบัตรและในหน้า Browse เปิดพร้อมกันได้หลายภาษา</li>
+          <li><b>Front &amp; Script</b> — ตั้งค่าว่าด้านหน้าบัตรจะแสดงอะไร (ฮั่นจื้อ พินอิน ความหมาย…) และสลับระหว่าง 简 ตัวย่อ กับ 繁 ตัวเต็ม</li>
+        </ul>
+      </div>
+
+      <div class="guide-card">
+        <h3>คำศัพท์เลื่อนระดับอย่างไร</h3>
+        <p>แต่ละคำจะไต่ผ่าน 4 ระดับเมื่อคุณตอบถูกเรื่อย ๆ ยิ่งจำได้ดี คำก็ยิ่งกลับมาให้ทบทวนห่างขึ้น:</p>
+        <p><span class="gpill g-new">New</span> → <span class="gpill g-learning">Learning</span> → <span class="gpill g-familiar">Familiar</span> → <span class="gpill g-mastered">Mastered</span></p>
+        <p>แตะ <b>★</b> บนบัตรเพื่อเพิ่มคำลงในรายการ <b>★ Review</b> และเมื่อมีคำถึงกำหนดทบทวน ปุ่ม <b>⏰ Study due</b> จะปรากฏขึ้นเพื่อรวบรวมให้</p>
+      </div>
+
+      <div class="guide-card">
+        <h3>การค้นหา (Browse)</h3>
+        <p>ค้นหาด้วยฮั่นจื้อ พินอิน หรือภาษาความหมายใดก็ได้ในสามภาษา ปุ่มกรองช่วยจำกัดรายการตามระดับ — New, Learning, Familiar, Mastered — หรือคำที่ติดดาว <b>★ Review</b> ความหมายจะแสดงตามภาษา EN / TH / JP ที่คุณเปิดไว้</p>
+      </div>
+
+      <div class="guide-card">
+        <h3>เกม</h3>
+        <ul>
+          <li><b>Tone Hero</b> — อ่านหรือฟังพยางค์แล้วเลือกวรรณยุกต์ ทำคอมโบต่อเนื่องเพื่อเพิ่มคะแนน</li>
+          <li><b>Memory Match</b> — พลิกบัตรเพื่อจับคู่ฮั่นจื้อกับความหมาย ทีละระดับ</li>
+        </ul>
+        <p>การเคลียร์คำในเกมก็ช่วยให้เพื่อนของคุณเติบโตด้วย</p>
+      </div>
+
+      <div class="guide-card">
+        <h3>เพื่อนของคุณและการเติบโต</h3>
+        <p>การเรียนและการเล่นจะได้รับ XP และทำให้เพื่อนตัวน้อยเติบโตผ่าน 6 ระดับ ดูแท็บ <b>Progress</b> เพื่อดูว่าคุณมาไกลแค่ไหนและขั้นต่อไปคืออะไร</p>
+      </div>
+
+      <div class="guide-card">
+        <h3>โปรไฟล์และการสำรองข้อมูล</h3>
+        <p>ผู้เรียนแต่ละคนมีโปรไฟล์ของตัวเองในเครื่องนี้ได้ จากปุ่มบัญชี คุณสามารถสลับโปรไฟล์และคัดลอก <b>รหัสสำรอง (backup code)</b> — เก็บไว้ในที่ปลอดภัยเพื่อกู้คืนความก้าวหน้าภายหลัง หรือบนอุปกรณ์อื่น</p>
+      </div>
+    </div>
+    <div class="guide-lang" data-glang="ja" hidden>
+      <div class="guide-intro">
+        <h2>Peng HSK 朋 へようこそ</h2>
+        <p>フラッシュカード・クイズ・ゲームで HSK の中国語語彙を学べます。意味は英語・タイ語・日本語で表示でき、小さな仲間たちが応援してくれます。</p>
+      </div>
+
+      <div class="guide-card">
+        <h3>タブについて</h3>
+        <ul>
+          <li><b>Study</b> — カードをめくって自己評価します。学習の中心です。</li>
+          <li><b>Quiz</b> — 選択式の問題で力試しができます。</li>
+          <li><b>Browse</b> — レベル内のすべての単語を検索・一覧できます。</li>
+          <li><b>Progress</b> — 学習に合わせて相棒が成長していきます。</li>
+          <li><b>Games</b> — Tone Hero と Memory Match で楽しく練習できます。</li>
+        </ul>
+      </div>
+
+      <div class="guide-card">
+        <h3>カードで学ぶ</h3>
+        <p>カードをタップすると問題と答えが切り替わります。スワイプ、または矢印ボタンで次のカードへ進めます。</p>
+        <p>各カードのあとに、どれくらい覚えていたかを選ぶと、次に表示するタイミングが決まります:</p>
+        <p><span class="gpill g-again">Again</span> わからなかった &nbsp; <span class="gpill g-hard">Hard</span> あいまい &nbsp; <span class="gpill g-good">Good</span> できた &nbsp; <span class="gpill g-easy">Easy</span> 簡単すぎた</p>
+      </div>
+
+      <div class="guide-card">
+        <h3>表示する内容を選ぶ</h3>
+        <ul>
+          <li><b>Choose level</b> — 上部のメニューで学習する HSK レベルを選びます（単一レベル・累積範囲・すべて）。</li>
+          <li><b>Meanings (EN / TH / JP)</b> — カードの裏面や Browse に表示する言語を選びます。複数同時に表示できます。</li>
+          <li><b>Front &amp; Script</b> — カード表面に表示する内容（漢字・ピンイン・意味など）を設定し、简 簡体字 と 繁 繁体字 を切り替えます。</li>
+        </ul>
+      </div>
+
+      <div class="guide-card">
+        <h3>単語のレベルアップ</h3>
+        <p>正解を重ねるごとに、各単語は4つの段階を上がっていきます。よく覚えているほど、復習の間隔は長くなります:</p>
+        <p><span class="gpill g-new">New</span> → <span class="gpill g-learning">Learning</span> → <span class="gpill g-familiar">Familiar</span> → <span class="gpill g-mastered">Mastered</span></p>
+        <p>カードの <b>★</b> をタップすると <b>★ Review</b> リストに追加されます。復習すべき単語がたまると、<b>⏰ Study due</b> ボタンが現れてまとめてくれます。</p>
+      </div>
+
+      <div class="guide-card">
+        <h3>Browse（検索）</h3>
+        <p>漢字・ピンイン、または3つの意味言語のいずれかで検索できます。フィルターチップで段階（New, Learning, Familiar, Mastered）や <b>★ Review</b> の単語に絞り込めます。意味は、オンにした EN / TH / JP の言語で表示されます。</p>
+      </div>
+
+      <div class="guide-card">
+        <h3>ゲーム</h3>
+        <ul>
+          <li><b>Tone Hero</b> — 音節を読むか聞いて声調を選びます。連続正解のコンボでスコアが上がります。</li>
+          <li><b>Memory Match</b> — カードをめくって漢字と意味をペアにします。レベルごとに遊べます。</li>
+        </ul>
+        <p>ゲームで単語をクリアすると、相棒の成長にもつながります。</p>
+      </div>
+
+      <div class="guide-card">
+        <h3>相棒と成長</h3>
+        <p>学習とプレイで XP を獲得し、小さな仲間が6段階に成長します。<b>Progress</b> タブで、どこまで来たか・次は何かを確認できます。</p>
+      </div>
+
+      <div class="guide-card">
+        <h3>プロフィールとバックアップ</h3>
+        <p>学習者ごとに、この端末上で自分のプロフィールを持てます。アカウントチップからプロフィールを切り替え、<b>backup code</b> をコピーできます — 安全な場所に保存しておくと、あとで、または別の端末で進捗を復元できます。</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="note"><b>HSK 1–6</b> · 6,100 words. English from CC-CEDICT (CC BY-SA 4.0); <b>Thai &amp; Japanese</b> are study aids.</p>
+  <p class="disclaimer">Thai &amp; Japanese are AI-drafted and may need a native speaker's eye. Progress is saved on this device.</p>
 </div>
 
 <!-- Bottom nav -->
@@ -1096,6 +1316,7 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
     <button data-view="browse" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Browse</button>
     <button data-view="progress" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5M4 19h16M8 16v-5M13 16V8M18 16v-3"/></svg>Progress</button>
     <button data-view="games" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>Games</button>
+    <button data-view="guide" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6C10.3 5 7.7 4.6 5 5v13c2.7-.4 5.3 0 7 1 1.7-1 4.3-1.4 7-1V5c-2.7-.4-5.3 0-7 1z"/><path d="M12 6v13"/></svg>Guide</button>
   </div>
 </nav>
 
@@ -1103,7 +1324,7 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
 <div class="modal-back" id="acctModal">
   <div class="modal" role="dialog" aria-modal="true" aria-label="Accounts">
     <h2>Your buddy profiles</h2>
-    <p class="msub">Each profile keeps its own XP, streak and memory progress on this device.</p>
+    <p class="msub">Each profile keeps its own XP and memory progress on this device.</p>
     <div class="acct-list" id="acctList"></div>
     <button class="btn btn-ghost" id="newAcctBtn" style="width:100%;margin-bottom:8px">+ New profile</button>
     <button class="btn btn-ghost" id="startScreenBtn" style="width:100%;margin-bottom:8px">⌂ Back to start screen</button>
@@ -1310,9 +1531,20 @@ var MASCOTS={
       +'<g stroke="#8a5f38" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".55"><path d="M51 101 L60 105 L69 101"/><path d="M51 109 L60 113 L69 109"/></g>'},
 
   "🦁":{label:"the lion",name:"lion",body:"#eab063",belly:"#f7e8cd",arm:"#eab063",stroke:"#d99440",glow:"#e8a23a",
-    head:'<g fill="#c9772e"><circle cx="60" cy="11" r="9"/><circle cx="40" cy="15" r="9"/><circle cx="80" cy="15" r="9"/>'
-      +'<circle cx="24" cy="31" r="9"/><circle cx="96" cy="31" r="9"/><circle cx="18" cy="51" r="9"/><circle cx="102" cy="51" r="9"/>'
-      +'<circle cx="24" cy="71" r="9"/><circle cx="96" cy="71" r="9"/><circle cx="40" cy="85" r="9"/><circle cx="80" cy="85" r="9"/></g>'
+    head:'<g fill="#b8661f">'
+      +'<circle cx="60" cy="8" r="12"/><circle cx="45" cy="10" r="11"/><circle cx="75" cy="10" r="11"/>'
+      +'<circle cx="31" cy="18" r="12"/><circle cx="89" cy="18" r="12"/>'
+      +'<circle cx="19" cy="33" r="12"/><circle cx="101" cy="33" r="12"/>'
+      +'<circle cx="14" cy="50" r="12"/><circle cx="106" cy="50" r="12"/>'
+      +'<circle cx="18" cy="66" r="11"/><circle cx="102" cy="66" r="11"/>'
+      +'<circle cx="30" cy="78" r="10"/><circle cx="90" cy="78" r="10"/>'
+      +'<circle cx="48" cy="85" r="9"/><circle cx="72" cy="85" r="9"/></g>'
+      +'<g fill="#d98f3f">'
+      +'<circle cx="60" cy="16" r="7"/><circle cx="40" cy="19" r="7"/><circle cx="80" cy="19" r="7"/>'
+      +'<circle cx="26" cy="30" r="8"/><circle cx="94" cy="30" r="8"/>'
+      +'<circle cx="22" cy="48" r="8"/><circle cx="98" cy="48" r="8"/>'
+      +'<circle cx="27" cy="64" r="7"/><circle cx="93" cy="64" r="7"/>'
+      +'<circle cx="42" cy="76" r="6"/><circle cx="78" cy="76" r="6"/></g>'
       +'<g class="m-ear-l" style="transform-box:view-box;transform-origin:36px 32px"><circle cx="36" cy="26" r="7" fill="#eab063"/></g><g class="m-ear-r" style="transform-box:view-box;transform-origin:84px 32px"><circle cx="84" cy="26" r="7" fill="#eab063"/></g>'
       +'<ellipse cx="60" cy="50" rx="34" ry="32" fill="#eab063" stroke="#d99440" stroke-width="1.5"/>'
       +'<ellipse cx="60" cy="60" rx="18" ry="13" fill="#f7e0bd"/>'
@@ -1447,9 +1679,14 @@ function loadDB(){
 function saveDB(){try{localStorage.setItem(DB_KEY,JSON.stringify(DB));}catch(e){}}
 var DB=loadDB();
 
+function nextDefaultName(){
+  var mx=0;
+  try{var A=(typeof DB!=="undefined"&&DB.accounts)?DB.accounts:{};Object.keys(A).forEach(function(k){var m=/^同学\s*(\d+)$/.exec(A[k].name||"");if(m){var n=parseInt(m[1],10);if(n>mx)mx=n;}});}catch(e){}
+  return "同学 "+(mx+1);
+}
 function newAccount(name,emoji){
   var id="a"+Date.now().toString(36)+Math.floor(Math.random()*1e4).toString(36);
-  return {id:id,name:name||"Buddy",emoji:emoji||"🐼",created:Date.now(),
+  return {id:id,name:name||nextDefaultName(),emoji:emoji||"🐼",created:Date.now(),
     xp:0,streak:0,lastDay:null,days:[],xpByDay:{},
     settings:{front:"han",script:"simp",langs:{en:true,th:false,ja:false},dataset:"hsk",groups:{hsk:"1"}},
     cards:{},best:{},qStats:{correct:0,total:0},log:[]};
@@ -1526,7 +1763,6 @@ function touchDay(){
   var y=todayStr(new Date(Date.now()-86400000));
   if(a.lastDay===y)a.streak++;else a.streak=1;
   a.lastDay=t;if(a.days.indexOf(t)<0)a.days.push(t);
-  $("#streakNum").textContent=a.streak;
 }
 var lastStage=null;
 function flashGrowthMaybe(){
@@ -1684,6 +1920,7 @@ function rateAndAdvance(rating){
 function updateDueCounts(){
   var a=acct();var dueAll=currentLevelWords().filter(function(w){return isDue(a.cards[w.id]);}).length;
   var dc=$("#dueCount");if(dc)dc.textContent=dueAll;
+  var dr=$("#dueRow");if(dr)dr.style.display=dueAll>0?"":"none";
   var qd=$("#qDueCount");if(qd)qd.textContent=dueAll;
   var hard=ALL_WORDS.filter(function(w){return a.cards[w.id]&&a.cards[w.id].hard;}).length;
   var qh=$("#qHardCount");if(qh)qh.textContent=hard;
@@ -1915,6 +2152,7 @@ function renderBrowse(){
 function renderProgress(){
   var a=acct();var g=growthPoints(a);var stage=stageFromGP(g.gp);lastStage=stage;
   $("#pandaBig").innerHTML=pandaSVG(stage,150);
+  $("#progOwner").textContent=a.name;
   $("#stageName").textContent=STAGES[stage-1].name;
   $("#stageCap").textContent=STAGES[stage-1].cap;
   var nextMin=stage<6?STAGES[stage].min:STAGES[5].min;
@@ -1937,7 +2175,6 @@ function renderProgress(){
     } else { gs.style.display="none"; }
   }
   $("#statXp").textContent=a.xp;
-  $("#statStreak").textContent=a.streak;
   $("#statMastered").textContent=g.mastered;
   $("#statAcc").textContent=a.qStats.total?Math.round(a.qStats.correct/a.qStats.total*100)+"%":"—";
 
@@ -1997,7 +2234,7 @@ function renderAcctList(){
     var a=DB.accounts[id];var active=id===DB.current;
     return '<button class="acct-card'+(active?" active":"")+'" data-id="'+id+'">'
       +'<span class="av">'+a.emoji+'</span>'
-      +'<span class="ac-info"><b>'+a.name+'</b><span>'+a.xp+' XP · '+(a.streak||0)+' day streak</span></span>'
+      +'<span class="ac-info"><b>'+a.name+'</b><span>'+a.xp+' XP</span></span>'
       +(Object.keys(DB.accounts).length>1?'<span class="ac-del" data-del="'+id+'" title="Delete">🗑</span>':'')
       +'</button>';
   }).join("");
@@ -2018,7 +2255,7 @@ function showForm(){
   $("#formName").focus();
 }
 function saveNewAccount(){
-  var name=($("#formName").value||"").trim()||"Panda";
+  var name=($("#formName").value||"").trim();
   var a=newAccount(name,formEmoji);DB.accounts[a.id]=a;DB.current=a.id;saveDB();
   lastStage=null;refreshAll();renderAcctList();$("#acctForm").style.display="none";refreshExport();toast("Profile created "+formEmoji);
 }
@@ -2041,7 +2278,7 @@ function doImport(){
 /* ============ chrome / nav ============ */
 function updateChip(){
   var a=acct();$("#acctName").textContent=a.name;$("#acctAv").textContent=a.emoji;
-  $("#acctXp").textContent=a.xp+" XP";$("#streakNum").textContent=a.streak||0;
+  $("#acctXp").textContent=a.xp+" XP";
 }
 function renderPanda(){
   var stage=stageFromGP(growthPoints(acct()).gp);
@@ -2260,18 +2497,28 @@ function onGroupChange(){buildStudyPool("reset");renderCard();updateDueCounts();
 function updateQuizSetupLabels(){$("#qPoolLevel").textContent=groupDisplay();updateDueCounts();}
 
 var curView="study";
+function applyGuideLang(g){
+  g=(g==="th"||g==="ja")?g:"en";
+  $$(".glang-toggle").forEach(function(x){x.setAttribute("aria-pressed",x.getAttribute("data-glang")===g);});
+  $$(".guide-lang").forEach(function(x){x.hidden=(x.getAttribute("data-glang")!==g);});
+}
 function switchView(v){
   curView=v;
   $$(".view").forEach(function(s){s.classList.toggle("active",s.id==="view-"+v);});
   $$(".nav button").forEach(function(b){b.setAttribute("aria-pressed",b.getAttribute("data-view")===v);});
   var topBars=(v==="progress")?"none":"";
-  $("#levels").style.display=(v==="progress")?"none":"flex";
+  var hideRow=(v==="progress"||v==="guide");
+  var showMeanings=(v==="study"||v==="browse");
+  $("#levels").style.display=hideRow?"none":"flex";
+  var cr=$("#ctrlRow");if(cr){cr.style.display=hideRow?"none":"flex";cr.classList.toggle("solo",!showMeanings);}
+  var lb=$("#langbarStudy");if(lb)lb.style.display=showMeanings?"flex":"none";
   $("#dsBar").style.display=(!SHOW_COURSE_BAR||v==="progress")?"none":"flex";
   if(v==="progress")renderProgress();
   if(v==="browse")renderBrowse();
   if(v==="quiz"){updateQuizSetupLabels();}
   if(v==="games"){if(!mm.playing&&!th.playing)games.view="hub";renderGames();}
   if(v==="study")renderPanda();
+  if(v==="guide")applyGuideLang(acct().settings.guideLang);
   window.scrollTo(0,0);
 }
 
@@ -2297,7 +2544,7 @@ function renderLanding(){
     host.innerHTML='<div class="lp-label">Continue as…</div>'+ids.map(function(id){
       var a=DB.accounts[id];
       return '<button class="lp-card" data-id="'+id+'"><span class="lp-av">'+a.emoji+'</span>'
-        +'<span class="lp-info"><b>'+escName(a.name)+'</b><span>'+(a.xp||0)+' XP · '+(a.streak||0)+' day streak</span></span>'
+        +'<span class="lp-info"><b>'+escName(a.name)+'</b><span>'+(a.xp||0)+' XP</span></span>'
         +'<span class="lp-go">→</span></button>';
     }).join("");
     $$("#landingProfiles .lp-card").forEach(function(b){b.onclick=function(){enterApp(b.getAttribute("data-id"));};});
@@ -2330,7 +2577,7 @@ function enterApp(id){
   setTimeout(function(){l.style.display="none";},380);
 }
 function landingCreateAccount(){
-  var name=($("#landingName").value||"").trim()||"Learner";
+  var name=($("#landingName").value||"").trim();
   var a=newAccount(name,landingEmoji);
   var _sc=document.querySelector('#onboardScript .chip[aria-pressed="true"]');if(_sc)a.settings.script=_sc.getAttribute("data-oscript");
   /* drop an untouched auto-created default so it doesn't linger */
@@ -2383,6 +2630,7 @@ function init(){
   $("#scriptSel").onchange=function(){acct().settings.script=this.value;saveDB();renderCard();renderBrowse();};
   // language toggles (sync across any bars)
   $$(".lang-toggle").forEach(function(b){b.onclick=function(){var k=b.getAttribute("data-lang");var L=langs();L[k]=!L[k];if(!L.en&&!L.th&&!L.ja)L.en=true;saveDB();syncLangButtons();renderCard();renderBrowse();};});
+  $$(".glang-toggle").forEach(function(b){b.onclick=function(){var g=b.getAttribute("data-glang");acct().settings.guideLang=g;saveDB();applyGuideLang(g);};});
   // study controls
   $("#prevBtn").onclick=function(){prevCard(false);};
   $("#nextBtn").onclick=function(){nextCard(false);};
